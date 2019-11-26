@@ -3,6 +3,7 @@ package com.csc301.songmicroservice;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,7 +26,8 @@ public class Song {
 	public static final String KEY_SONG_ALBUM = "songAlbum";	
 
 
-	public Song(String songName, String songArtistFullName, String songAlbum) {
+	public Song(@JsonProperty("songName") String songName, @JsonProperty("songArtistFullName")String songArtistFullName,
+				@JsonProperty("songAlbum")String songAlbum) {
 		this.songName = songName;
 		this.songArtistFullName = songArtistFullName;
 		this.songAlbum = songAlbum;
