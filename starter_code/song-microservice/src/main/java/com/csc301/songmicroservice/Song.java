@@ -26,8 +26,7 @@ public class Song {
 	public static final String KEY_SONG_ALBUM = "songAlbum";	
 
 
-	public Song(@JsonProperty("songName") String songName, @JsonProperty("songArtistFullName")String songArtistFullName,
-				@JsonProperty("songAlbum")String songAlbum) {
+	public Song(String songName, String songArtistFullName, String songAlbum) {
 		this.songName = songName;
 		this.songArtistFullName = songArtistFullName;
 		this.songAlbum = songAlbum;
