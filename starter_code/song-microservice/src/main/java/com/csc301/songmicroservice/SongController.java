@@ -72,7 +72,7 @@ public class SongController {
 
 	
 	@RequestMapping(value = "/addSong", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> addSong(@RequestBody Map<String, String> params,
+	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
 		System.out.println("addsong is called");
 		System.out.println("parameters are " + params.entrySet());
