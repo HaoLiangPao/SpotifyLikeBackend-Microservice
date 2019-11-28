@@ -64,21 +64,22 @@ public class SongController {
 	public @ResponseBody Map<String, Object> deleteSongById(@PathVariable("songId") String songId,
 			HttpServletRequest request) {
 
+		DbQueryStatus dbQueryStatus = songDal.deleteSongById(songId);
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("DELETE %s", Utils.getUrl(request)));
-
-		return null;
+		response.put("status", dbQueryStatus.getdbQueryExecResult());
+		return response;
 	}
 
 	
 	@RequestMapping(value = "/addSong", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
-		System.out.println("addsong is called");
-		System.out.println("parameters are " + params.entrySet());
-		for (Map.Entry<String, String> entry : params.entrySet()){
-			System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
-		}
+//		System.out.println("addsong is called");
+//		System.out.println("parameters are " + params.entrySet());
+//		for (Map.Entry<String, String> entry : params.entrySet()){
+//			System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
+//		}
 		String songName = params.get("songName");
 		String songArtist = params.get("songArtistFullName");
 		String songAlbum = params.get("songAlbum");
