@@ -86,7 +86,29 @@ public class SongDalImpl implements SongDal {
 	@Override
 	public DbQueryStatus getSongTitleById(String songId) {
 		// TODO Auto-generated method stub
-		return null;
+		ObjectId objectId = new ObjectId(songId);
+		Hashtable queryPair = new Hashtable();
+		queryPair.put("_id", objectId);
+		Document query = new Document(queryPair);
+
+		MongoCursor<Document> cursor = collection.find(query).iterator();
+//		System.out.println("set is " + cursor.toString());
+		if (cursor.hasNext()){
+			Document songDocFound = cursor.next();
+			Song songFound = converter.toSong(songDocFound);
+
+			dbQueryStatus.setMessage("The song is successfully found in the database");
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+			dbQueryStatus.setData(songFound.getSongName());
+		}
+		else {
+			//when object id is not existing int he database.
+			dbQueryStatus.setMessage("The song with id given is not found in the database");
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+			dbQueryStatus.setData(null);
+		}
+		System.out.println(dbQueryStatus.getMessage());
+		return dbQueryStatus;
 	}
 
 	@Override
