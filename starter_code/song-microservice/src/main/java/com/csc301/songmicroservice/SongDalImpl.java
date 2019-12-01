@@ -1,6 +1,7 @@
 package com.csc301.songmicroservice;
 
 import com.mongodb.client.MongoCollection;
+import java.util.Hashtable;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,11 @@ public class SongDalImpl implements SongDal {
 	private final MongoTemplate db;
 	private final MongoCollection collection;
 	private final SongConverter converter;
+	private DbQueryStatus dbQueryStatus = new DbQueryStatus("new query status",
+			DbQueryExecResult.QUERY_OK);
+
 	@Autowired
+	// singularity design
 	public SongDalImpl(MongoTemplate mongoTemplate) {
 		this.db = mongoTemplate;
 		if (!db.collectionExists("songs")) {
@@ -56,8 +61,27 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus deleteSongById(String songId) {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO: handel the case of internal problem
+		//store the id and change the type to be used in a mongodb query
+		ObjectId objectId = new ObjectId(songId);
+		Hashtable queryPair = new Hashtable();
+		queryPair.put("_id", objectId);
+		Document query = new Document(queryPair);
+		// interact with database for deletion
+		if (collection.deleteOne(query).getDeletedCount() != 0){
+			dbQueryStatus.setMessage("Log: SongMicroService-delete operation is completed");
+			//result for server-client interaction
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+		}
+		else  {
+			dbQueryStatus.setMessage("Error Message: SongMicroService-the post is not found in the"
+					+ " database, delete did not complete");
+			//result for server-client interaction
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+		}
+		// log message no matter success or failure
+		System.out.println(dbQueryStatus.getMessage());
+		return dbQueryStatus;
 	}
 
 	@Override

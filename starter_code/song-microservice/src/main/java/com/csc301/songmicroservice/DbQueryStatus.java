@@ -1,5 +1,6 @@
 package com.csc301.songmicroservice;
 
+
 public class DbQueryStatus {
 	
 	private String message;
