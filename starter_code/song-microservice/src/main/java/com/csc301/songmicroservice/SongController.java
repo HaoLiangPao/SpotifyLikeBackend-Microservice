@@ -79,21 +79,21 @@ public class SongController {
 	@RequestMapping(value = "/addSong", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
-//		System.out.println("addsong is called");
-//		System.out.println("parameters are " + params.entrySet());
-//		for (Map.Entry<String, String> entry : params.entrySet()){
-//			System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
-//		}
+
+		// create a song object
 		String songName = params.get("songName");
 		String songArtist = params.get("songArtistFullName");
 		String songAlbum = params.get("songAlbum");
-		System.out.println("parameters gotten are " + songName + ","+ songArtist + "," + songAlbum);
 		Song newSong = new Song(songName, songArtist, songAlbum);
-		DbQueryStatus dbQueryStatus = songDal.addSong(newSong);
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
-		response.put("status", dbQueryStatus.getMessage());
-		response.put("data", dbQueryStatus.getData());
+
+		DbQueryStatus dbQueryStatus = songDal.addSong(newSong);
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
 		return response;
 	}
 
