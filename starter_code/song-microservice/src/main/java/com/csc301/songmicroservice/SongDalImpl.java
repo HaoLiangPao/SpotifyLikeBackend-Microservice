@@ -36,14 +36,21 @@ public class SongDalImpl implements SongDal {
 	@Override
 	public DbQueryStatus addSong(Song songToAdd) {
 		// TODO Auto-generated method stub
-		///String songName = songToAdd.getSongName();
-		///String songArtist = songToAdd.getSongArtistFullName();
-		///String songAlbum = songToAdd.getSongAlbum();
+		// convert the song object to a document object for data base addition
 		Document songDoc = converter.toDocument(songToAdd);
-		DbQueryStatus dbQueryStatus = new DbQueryStatus("ok", DbQueryExecResult.QUERY_OK);
-		dbQueryStatus.setData(songDoc);
-		//db.insert(songToAdd, "songs");
+		// interaction with database
 		collection.insertOne(songDoc);
+
+		// encapsulation of log message
+		dbQueryStatus.setMessage("Addition is complete, song got added to the data base successfully");
+		dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+		System.out.println(dbQueryStatus.getMessage());
+
+		// update the Object ID to the song object
+		Document docAdded = (Document) collection.find(songDoc).iterator().next();
+		songToAdd.setId(docAdded.getObjectId("_id"));
+		// add the updated song object as the data
+		dbQueryStatus.setData(songToAdd);
 		return dbQueryStatus;
 	}
 
@@ -79,6 +86,7 @@ public class SongDalImpl implements SongDal {
 			//result for server-client interaction
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
 		}
+		dbQueryStatus.setData(null);
 		// log message no matter success or failure
 		System.out.println(dbQueryStatus.getMessage());
 		return dbQueryStatus;
