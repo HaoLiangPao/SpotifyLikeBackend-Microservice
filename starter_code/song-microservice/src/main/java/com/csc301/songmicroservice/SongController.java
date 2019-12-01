@@ -64,10 +64,14 @@ public class SongController {
 	public @ResponseBody Map<String, Object> deleteSongById(@PathVariable("songId") String songId,
 			HttpServletRequest request) {
 
-		DbQueryStatus dbQueryStatus = songDal.deleteSongById(songId);
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("DELETE %s", Utils.getUrl(request)));
-		response.put("status", dbQueryStatus.getdbQueryExecResult());
+
+		DbQueryStatus dbQueryStatus = songDal.deleteSongById(songId);
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
 		return response;
 	}
 

@@ -39,7 +39,6 @@ public class Utils {
 			response.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
 			break;
 		}
-		
 		return response;
 	}
 }
