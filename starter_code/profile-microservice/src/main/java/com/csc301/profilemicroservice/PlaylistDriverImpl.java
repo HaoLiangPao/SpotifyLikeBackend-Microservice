@@ -59,6 +59,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 				dbQueryStatus.setMessage("Song is successfully added to user's favorite");
 				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
 			}
+			session.close();
 		}
 		System.out.println(dbQueryStatus.getMessage());
 		return dbQueryStatus;
@@ -66,13 +67,45 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus unlikeSong(String userName, String songId) {
-		
-		return null;
+		try (Session session = driver.session()){
+			try	(Transaction trans = session.beginTransaction()){
+				String plName = userName + "-favorite";
+
+				// check if the songId is already in the database
+				queryStr = "MATCH (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song)"
+						+ " WHERE p.userName = $userName AND s.songId = $songID RETURN r2";
+				StatementResult result = trans.run(queryStr, parameters( "userName",
+						userName, "songID", songId));
+				trans.success();
+				System.out.println("Log-ProfileMicroService: the relationship between the user and"
+						+ " the song is existed");
+				// if the relationship between the user and the song is existed
+				if (result.hasNext()){
+					// if the relationship does exist, delete it
+					queryStr = "MATCH (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song)"
+							+ " WHERE p.userName = $userName AND s.songId = $songID DELETE r2";
+					result = trans.run(queryStr, parameters( "userName",
+							userName, "songID", songId));
+					trans.success();
+					// create relationship between the profile and a playlist
+					dbQueryStatus.setMessage("Song is successfully deleted from user's favorite");
+					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+				}
+				else {
+					// if the relationship does not exist, return an error message
+					dbQueryStatus.setMessage("Song is not included in user's favorite");
+					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+				}
+			}
+			session.close();
+		}
+		System.out.println(dbQueryStatus.getMessage());
+		return dbQueryStatus;
 	}
 
 	@Override
 	public DbQueryStatus deleteSongFromDb(String songId) {
-		
+
 		return null;
 	}
 }
