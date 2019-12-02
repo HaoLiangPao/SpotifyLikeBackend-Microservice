@@ -83,10 +83,11 @@ public class ProfileDriverImpl implements ProfileDriver {
             userName, "friendUserName", friendUserName));
         trans.success();
 
-        //Get values from neo4j StatementResult object
-        List<Record> records = result.list();
-        Record record = records.get(0);
-        Map recordMap = record.asMap();
+//        //Get values from neo4j StatementResult object
+//        List<Record> records = result.list();
+//        Record record = records.get(0);
+//        Map recordMap = record.asMap();
+
         // create relationship between the profile and a playlist
         dbQueryStatus.setMessage("Friend is successfully followed");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
