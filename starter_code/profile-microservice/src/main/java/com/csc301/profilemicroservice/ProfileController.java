@@ -47,13 +47,19 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
+	public @ResponseBody Map<String, Object> addProfile(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
 
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
 
-		return null;
+		DbQueryStatus dbQueryStatus = profileDriver.createUserProfile(params.get("userName"),
+				params.get("fullName"), params.get("password"));
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
+		return response;
 	}
 
 	@RequestMapping(value = "/followFriend/{userName}/{friendUserName}", method = RequestMethod.PUT)
