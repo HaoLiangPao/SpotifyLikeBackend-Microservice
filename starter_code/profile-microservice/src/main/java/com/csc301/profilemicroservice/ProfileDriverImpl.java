@@ -47,18 +47,24 @@ public class ProfileDriverImpl implements ProfileDriver {
     try (Session session = driver.session()){
       try	(Transaction trans = session.beginTransaction()){
         // create or add the profile node into the database
-        queryStr = "MERGE (p:Profile{userName:$userName}) SET p.fullName = $fullName, p.password = "
+        queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName, p.password = "
             + "$password RETURN p.userName, p.fullName";
         StatementResult result = trans.run(queryStr, parameters("userName",
             userName, "fullName", fullName, "password", password));
-        //Get values from neo4j StatementResult object
-        List<Record> records = result.list();
-        Record record = records.get(0);
-        Map recordMap = record.asMap();
+        trans.success();
+        System.out.println("Log-ProfileMicroService: profile is successfully created");
 
         // create relationship between the profile and a playlist
+        String plName = userName + "-favorite";
+        queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
+            + " {plName:$plName}) RETURN r";
+        result = trans.run(queryStr, parameters("userName",
+            userName, "plName", plName));
+        trans.success();
+        System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
+            + "successfully created as well");
 
-        dbQueryStatus.setMessage("Profile is created and added to the database");
+        dbQueryStatus.setMessage("profile is created and added to the database");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
       }
     }
