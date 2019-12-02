@@ -92,9 +92,23 @@ public class ProfileDriverImpl implements ProfileDriver {
 	}
 
 	@Override
-	public DbQueryStatus unfollowFriend(String userName, String frndUserName) {
-		
-		return null;
+	public DbQueryStatus unfollowFriend(String userName, String friendUserName) {
+    try (Session session = driver.session()){
+      try	(Transaction trans = session.beginTransaction()){
+        // create or add the profile node into the database
+        queryStr = "MATCH (user)-[r:follows]->(friend) WHERE user.userName ="
+            + " $userName AND friend.userName = $friendUserName DELETE r";
+        StatementResult result = trans.run(queryStr, parameters("userName",
+            userName, "friendUserName", friendUserName));
+        trans.success();
+
+        // create relationship between the profile and a playlist
+        dbQueryStatus.setMessage("Friend is successfully unfollowed");
+        dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+      }
+    }
+    System.out.println(dbQueryStatus.getMessage());
+    return dbQueryStatus;
 	}
 
 	@Override
