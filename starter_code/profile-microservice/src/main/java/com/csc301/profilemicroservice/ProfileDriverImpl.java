@@ -35,7 +35,6 @@ public class ProfileDriverImpl implements ProfileDriver {
 
 				queryStr = "CREATE CONSTRAINT ON (nProfile:profile) ASSERT nProfile.userName IS UNIQUE";
 				trans.run(queryStr);
-
 				trans.success();
 			}
 			session.close();
@@ -47,10 +46,11 @@ public class ProfileDriverImpl implements ProfileDriver {
     try (Session session = driver.session()){
       try	(Transaction trans = session.beginTransaction()){
         // create or add the profile node into the database
-        queryStr = "MERGE (p:Profile{userName:$userName}) SET p.fullName = $fullName, p.password = "
+        queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName, p.password = "
             + "$password RETURN p.userName, p.fullName";
         StatementResult result = trans.run(queryStr, parameters("userName",
             userName, "fullName", fullName, "password", password));
+        trans.success();
         //Get values from neo4j StatementResult object
         List<Record> records = result.list();
         Record record = records.get(0);
@@ -61,15 +61,34 @@ public class ProfileDriverImpl implements ProfileDriver {
         dbQueryStatus.setMessage("Profile is created and added to the database");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
       }
+      session.close();
     }
     System.out.println(dbQueryStatus.getMessage());
     return dbQueryStatus;
   }
 
 	@Override
-	public DbQueryStatus followFriend(String userName, String frndUserName) {
-		
-		return null;
+	public DbQueryStatus followFriend(String userName, String friendUserName) {
+    try (Session session = driver.session()){
+      try	(Transaction trans = session.beginTransaction()){
+        // create or add the profile node into the database
+        queryStr = "MATCH (user:profile), (friend:profile) WHERE user.userName = $userName AND"
+            + " friend.userName = $friendUserName MERGE (user)-[r:follows]->(friend) RETURN r";
+        StatementResult result = trans.run(queryStr, parameters("userName",
+            userName, "friendUserName", friendUserName));
+        trans.success();
+
+        //Get values from neo4j StatementResult object
+        List<Record> records = result.list();
+        Record record = records.get(0);
+        Map recordMap = record.asMap();
+        // create relationship between the profile and a playlist
+        dbQueryStatus.setMessage("Friend is successfully followed");
+        dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+      }
+    }
+    System.out.println(dbQueryStatus.getMessage());
+    return dbQueryStatus;
 	}
 
 	@Override
