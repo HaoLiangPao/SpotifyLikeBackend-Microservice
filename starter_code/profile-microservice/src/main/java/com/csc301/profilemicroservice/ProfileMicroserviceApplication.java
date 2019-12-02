@@ -21,6 +21,8 @@ public class ProfileMicroserviceApplication {
 		PlaylistDriverImpl.InitPlaylistDb();
 		
 		System.out.println("Profile service is running on port 3002");
+
+		System.out.println(driver.toString());
 	}
 }
 
