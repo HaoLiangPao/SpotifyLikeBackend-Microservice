@@ -19,7 +19,7 @@ import org.neo4j.driver.v1.Transaction;
 public class ProfileDriverImpl implements ProfileDriver {
 
 	Driver driver = ProfileMicroserviceApplication.driver;
-	DbQueryStatus dbQueryStatus = new DbQueryStatus("defaul message", DbQueryExecResult.QUERY_OK);
+	DbQueryStatus dbQueryStatus = new DbQueryStatus("default message", DbQueryExecResult.QUERY_OK);
   String queryStr;
 
 	public static void InitProfileDb() {
