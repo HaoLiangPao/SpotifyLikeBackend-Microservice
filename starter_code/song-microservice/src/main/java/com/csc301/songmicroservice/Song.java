@@ -23,7 +23,7 @@ public class Song {
 	
 	public static final String KEY_SONG_NAME = "songName";
 	public static final String KEY_SONG_ARTIST_FULL_NAME = "songArtistFullName";
-	public static final String KEY_SONG_ALBUM = "songAlbum";	
+	public static final String KEY_SONG_ALBUM = "songAlbum";
 
 
 	public Song(String songName, String songArtistFullName, String songAlbum) {

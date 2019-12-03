@@ -26,6 +26,7 @@ public class SongConverter {
             (String) doc.get(Song.KEY_SONG_ARTIST_FULL_NAME),
             (String) doc.get(Song.KEY_SONG_ALBUM));
         s.setId(doc.getObjectId("_id"));
+        s.setSongAmountFavourites((Long) doc.get("songAmountFavourites"));
         return s;
     }
 
