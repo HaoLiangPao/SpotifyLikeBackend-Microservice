@@ -3,6 +3,7 @@ package com.csc301.songmicroservice;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import java.util.Hashtable;
+import java.util.concurrent.ExecutorService;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class SongDalImpl implements SongDal {
 	private final SongConverter converter;
 	private DbQueryStatus dbQueryStatus = new DbQueryStatus("new query status",
 			DbQueryExecResult.QUERY_OK);
+	private ObjectId objectId;
 
 	@Autowired
 	// singularity design
@@ -58,7 +60,14 @@ public class SongDalImpl implements SongDal {
 	@Override
 	public DbQueryStatus findSongById(String songId) {
 		// TODO Auto-generated method stub
-		ObjectId objectId = new ObjectId(songId);
+		try {
+			objectId = new ObjectId(songId);
+		}
+		catch (Exception e){
+			dbQueryStatus.setMessage("The input songId is invalid");
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_WRONG_PARAMETER);
+			return dbQueryStatus;
+		}
 		Hashtable queryPair = new Hashtable();
 		queryPair.put("_id", objectId);
 		Document query = new Document(queryPair);
