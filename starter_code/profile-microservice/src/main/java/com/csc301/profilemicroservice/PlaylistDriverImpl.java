@@ -5,18 +5,26 @@ import static org.neo4j.driver.v1.Values.parameters;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jndi.toolkit.url.Uri;
 import java.io.IOException;
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.neo4j.driver.v1.Transaction;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Repository
 public class PlaylistDriverImpl implements PlaylistDriver {
@@ -25,6 +33,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 	Driver driver = ProfileMicroserviceApplication.driver;
 	DbQueryStatus dbQueryStatus = new DbQueryStatus("defaul message", DbQueryExecResult.QUERY_OK);
 	String queryStr;
+	StatementResult result;
 
 	public static void InitPlaylistDb() {
 		String queryStr;
@@ -46,9 +55,9 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 				String plName = userName + "-favorite";
 
 				// check if the songId is already in the database (request from MongoDB)
-				String songMicroURL = "http://localhost:3001/getSongById/{songId}";
+				String songMicroGet = "http://localhost:3001/getSongById/{songId}";
 				// ResponseEntity<SongResponse> response = restTemplate.getForEntity(songMicroURL, SongResponse.class, songId);
-				ResponseEntity<String> res = restTemplate.getForEntity(songMicroURL, String.class, songId);
+				ResponseEntity<String> res = restTemplate.getForEntity(songMicroGet, String.class, songId);
 				ObjectMapper mapper = new ObjectMapper();
 				JsonNode resJSON = mapper.readTree(res.getBody());
 				JsonNode songMongo = resJSON.get("data");
@@ -60,20 +69,65 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 				try {
 					System.out.println("Log-profileMicroService: the song is found in MongoDB");
 					System.out.println(songMongo.get("id"));
-					// create the song node if the song is not existed in the database before
-					queryStr = "CREATE (s:song {songId:$songID}) RETURN s";
+
+					// check if the song is existing in the Neo4j database
+					queryStr = "Match (s:song {songId:$songID}) RETURN s";
 					StatementResult result = trans.run(queryStr, parameters("songID", songId));
 					trans.success();
-					System.out.println("Log-profileMicroService: the new song is added in the database");
-					// create or add the profile node into the database
-					queryStr = "MATCH (l:playlist),(s:song) WHERE l.plName = $plName AND s.songId = $songID"
-							+ " MERGE (l)-[r:includes]->(s) RETURN r";
+
+					// create song node if the song is new in Neo4j database
+					if (!result.hasNext()) {
+						// create the song node if the song is not existed in the database before
+						queryStr = "CREATE (s:song {songId:$songID}) RETURN s";
+						result = trans.run(queryStr, parameters("songID", songId));
+						trans.success();
+						System.out.println("Log-profileMicroService: the new song is added in the database");
+					}
+					// check if the relationship is already existed in Neo4j database
+					queryStr = "MATCH (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song) WHERE "
+							+ "l.plName = $plName AND s.songId = $songID RETURN r2";
 					result = trans.run(queryStr, parameters("plName",
 							plName, "songID", songId));
 					trans.success();
-					// create relationship between the profile and a playlist
-					dbQueryStatus.setMessage("Song is successfully added to user's favorite");
-					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+					// if the relationship is new to Neo4j
+					if (!result.hasNext()) {
+						// create or add the profile node into the database
+						queryStr = "MATCH (l:playlist),(s:song) WHERE l.plName = $plName AND s.songId = $songID"
+								+ " MERGE (l)-[r2:includes]->(s) RETURN r2";
+						result = trans.run(queryStr, parameters("plName",
+								plName, "songID", songId));
+						trans.success();
+						// after the relationship is created in Neo4j, favourite number should be increment in
+						// MongoDB through Song MicroService
+						String songMicroUpdate = "http://localhost:3001/updateSongFavouritesCount/{songId}";
+						// URL parameters
+						Map<String, String> urlParam = new HashMap<String, String>();
+						urlParam.put("songId", songId);
+						// Query parameters
+						UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(songMicroUpdate)
+								.queryParam("shouldDecrement", "false");
+						// communication with SongMicroService
+						res = restTemplate.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
+								HttpEntity.EMPTY, String.class);
+						mapper = new ObjectMapper();
+						resJSON = mapper.readTree(res.getBody());
+						JsonNode updateStatus = resJSON.get("status");
+						// if Song MicroService updated the favourites count
+						if (updateStatus.asText().equals("OK")) {
+							// create relationship between the profile and a playlist
+							dbQueryStatus.setMessage("Song is successfully added to user's favorite");
+							dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+						}
+						// if the Song MicroService went wrong for some reason
+						else {
+							dbQueryStatus.setMessage("Failed to communicate with our Song Database");
+							dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+						}
+					}
+					else {
+							dbQueryStatus.setMessage("Song is already in user's favourites");
+							dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+					}
 				}
 				// the song is not found in MongoDB by Song MicroService
 				catch (Exception e){
