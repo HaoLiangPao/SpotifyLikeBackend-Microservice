@@ -1,16 +1,44 @@
 package com.csc301.profilemicroservice;
 
 import java.io.Serializable;
+import org.json.JSONObject;
 
 public class SongResponse implements Serializable {
 
-  private String songId;
+  private String path;
+  private JSONObject data;
+  private String message;
+  private String status;
 
-  public String getSongId() {
-    return songId;
+  public JSONObject getData() {
+    return data;
   }
 
-  public void setSongId(String songId) {
-    this.songId = songId;
+  public String getMessage() {
+    return message;
+  }
+
+  public String getPath() {
+    return path;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setData(JSONObject data) {
+    this.data = data;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 }
