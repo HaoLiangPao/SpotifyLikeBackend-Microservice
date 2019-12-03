@@ -2,12 +2,7 @@ package com.csc301.songmicroservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,6 +15,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -52,7 +48,7 @@ public class SongController {
 		return response;
 	}
 
-	
+
 	@RequestMapping(value = "/getSongTitleById/{songId}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getSongTitleById(@PathVariable("songId") String songId,
 			HttpServletRequest request) {
@@ -60,7 +56,12 @@ public class SongController {
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("GET %s", Utils.getUrl(request)));
 
-		return null;
+		DbQueryStatus dbQueryStatus = songDal.getSongTitleById(songId);
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
+		return response;
 	}
 
 	
@@ -71,7 +72,12 @@ public class SongController {
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("DELETE %s", Utils.getUrl(request)));
 
-		return null;
+		DbQueryStatus dbQueryStatus = songDal.deleteSongById(songId);
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
+		return response;
 	}
 
 	
@@ -79,10 +85,21 @@ public class SongController {
 	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
 
+		// create a song object
+		String songName = params.get("songName");
+		String songArtist = params.get("songArtistFullName");
+		String songAlbum = params.get("songAlbum");
+		Song newSong = new Song(songName, songArtist, songAlbum);
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
 
-		return null;
+		DbQueryStatus dbQueryStatus = songDal.addSong(newSong);
+
+		response.put("message", dbQueryStatus.getMessage());
+		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
+
+		return response;
 	}
 
 	
