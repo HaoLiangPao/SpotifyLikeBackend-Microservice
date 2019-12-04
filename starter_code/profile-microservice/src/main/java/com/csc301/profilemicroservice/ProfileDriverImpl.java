@@ -68,13 +68,41 @@ public class ProfileDriverImpl implements ProfileDriver {
         trans.success();
         System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
             + "successfully created as well");
+	  // check if the parameters are all given
+	  if (userName == null || fullName == null || password == null){
+	    dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
+	    dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+    }
+	  // if there are some parameters missing
+	  else {
+      try (Session session = driver.session()) {
+        try (Transaction trans = session.beginTransaction()) {
+          // create or add the profile node into the database
+          queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName,"
+              + " p.password = $password RETURN p.userName, p.fullName";
+          StatementResult result = trans.run(queryStr, parameters("userName",
+              userName, "fullName", fullName, "password", password));
+          trans.success();
+          System.out.println("Log-ProfileMicroService: profile is successfully created");
 
-        dbQueryStatus.setMessage("profile is created and added to the database");
-        dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+          // create relationship between the profile and a playlist
+          String plName = userName + "-favorites";
+          queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
+              + " {plName:$plName}) RETURN r";
+          result = trans.run(queryStr, parameters("userName",
+              userName, "plName", plName));
+          trans.success();
+          System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
+              + "successfully created as well");
+
+          dbQueryStatus.setMessage("profile is created and added to the database");
+          dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+        }
+        session.close();
       }
-      session.close();
     }
     System.out.println(dbQueryStatus.getMessage());
+    dbQueryStatus.setData(null);
     return dbQueryStatus;
   }
 

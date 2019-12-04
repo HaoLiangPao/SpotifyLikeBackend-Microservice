@@ -77,7 +77,7 @@ public class SongDalImpl implements SongDal {
 		}
 		catch (Exception e){
 			dbQueryStatus.setMessage("The input songId is invalid");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_WRONG_PARAMETER);
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 			return dbQueryStatus;
 		}
 		Hashtable queryPair = new Hashtable();
@@ -112,7 +112,7 @@ public class SongDalImpl implements SongDal {
 		}
 		catch (Exception e){
 			dbQueryStatus.setMessage("The input songId is invalid");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_WRONG_PARAMETER);
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 			return dbQueryStatus;
 		}
 		Hashtable queryPair = new Hashtable();
@@ -148,7 +148,7 @@ public class SongDalImpl implements SongDal {
 		}
 		catch (Exception e){
 			dbQueryStatus.setMessage("The input songId is invalid");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_WRONG_PARAMETER);
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 			return dbQueryStatus;
 		}
 		Hashtable queryPair = new Hashtable();
@@ -199,7 +199,7 @@ public class SongDalImpl implements SongDal {
 		}
 		catch (Exception e){
 			dbQueryStatus.setMessage("The input songId is invalid");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_WRONG_PARAMETER);
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 			return dbQueryStatus;
 		}
 		Hashtable queryPair = new Hashtable();
