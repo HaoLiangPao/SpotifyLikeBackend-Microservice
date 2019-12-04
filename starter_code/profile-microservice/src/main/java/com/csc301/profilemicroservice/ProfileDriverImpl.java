@@ -54,26 +54,38 @@ public class ProfileDriverImpl implements ProfileDriver {
 	  else {
       try (Session session = driver.session()) {
         try (Transaction trans = session.beginTransaction()) {
-          // create or add the profile node into the database
-          queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName,"
-              + " p.password = $password RETURN p.userName, p.fullName";
+          // check if the profile is existed in Neo4j
+          queryStr = "MATCH (user:profile) WHERE user.userName ="
+              + " $userName RETURN user";
           StatementResult result = trans.run(queryStr, parameters("userName",
-              userName, "fullName", fullName, "password", password));
+              userName));
           trans.success();
-          System.out.println("Log-ProfileMicroService: profile is successfully created");
+          // if the profile is not existed
+          if (!result.hasNext()){
+            // create or add the profile node into the database
+            queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName,"
+                + " p.password = $password RETURN p.userName, p.fullName";
+            result = trans.run(queryStr, parameters("userName",
+                userName, "fullName", fullName, "password", password));
+            trans.success();
+            System.out.println("Log-ProfileMicroService: profile is successfully created");
 
-          // create relationship between the profile and a playlist
-          String plName = userName + "-favorites";
-          queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
-              + " {plName:$plName}) RETURN r";
-          result = trans.run(queryStr, parameters("userName",
-              userName, "plName", plName));
-          trans.success();
-          System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
-              + "successfully created as well");
+            // create relationship between the profile and a playlist
+            String plName = userName + "-favorites";
+            queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
+                + " {plName:$plName}) RETURN r";
+            result = trans.run(queryStr, parameters("userName",
+                userName, "plName", plName));
+            trans.success();
+            System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
+                + "successfully created as well");
 
-          dbQueryStatus.setMessage("profile is created and added to the database");
+            dbQueryStatus.setMessage("profile is created and added to the database");
+            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+          }
+          dbQueryStatus.setMessage("profile is already existed in the database");
           dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+
         }
         session.close();
       }
@@ -85,8 +97,8 @@ public class ProfileDriverImpl implements ProfileDriver {
 
 	@Override
 	public DbQueryStatus followFriend(String userName, String friendUserName) {
-    // check if the parameters are all given
-    if (userName == null || friendUserName == null){
+    // check if the parameters are all given, and two names are not equal
+    if (userName == null || friendUserName == null || userName == friendUserName){
       dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
       dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
     }
@@ -129,7 +141,7 @@ public class ProfileDriverImpl implements ProfileDriver {
 	@Override
 	public DbQueryStatus unfollowFriend(String userName, String friendUserName) {
     // check if the parameters are all given
-    if (userName == null || friendUserName == null){
+    if (userName == null || friendUserName == null || userName == friendUserName){
       dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
       dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
     }
