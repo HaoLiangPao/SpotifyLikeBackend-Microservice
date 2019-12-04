@@ -2,6 +2,7 @@ package com.csc301.profilemicroservice;
 
 import static org.neo4j.driver.v1.Values.parameters;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,7 +86,6 @@ public class ProfileDriverImpl implements ProfileDriver {
           }
           dbQueryStatus.setMessage("profile is already existed in the database");
           dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-
         }
         session.close();
       }
@@ -106,29 +106,48 @@ public class ProfileDriverImpl implements ProfileDriver {
     else {
       try (Session session = driver.session()) {
         try (Transaction trans = session.beginTransaction()) {
-
-          // check if the relationship is existed in Neo4j
-          queryStr = "MATCH (user:profile)-[r:follows]->(friend:profile) WHERE user.userName ="
-              + " $userName AND friend.userName = $friendUserName RETURN r";
-          StatementResult result = trans.run(queryStr, parameters("userName",
-              userName, "friendUserName", friendUserName));
+          // check user
+          queryStr = "MATCH (user:profile)WHERE user.userName ="
+              + " $userName RETURN user";
+          StatementResult userFound = trans.run(queryStr, parameters("userName", userName));
           trans.success();
-          // if the relationship is not existed in Neo4j
-          if (!result.hasNext()) {
-            // create or add the profile node into the database
-            queryStr = "MATCH (user:profile), (friend:profile) WHERE user.userName = $userName AND"
-                + " friend.userName = $friendUserName MERGE (user)-[r:follows]->(friend) RETURN r";
-            result = trans.run(queryStr, parameters("userName",
+          // check friend
+          queryStr = "MATCH (friend:profile)WHERE friend.userName ="
+              + " $friendUserName RETURN friend";
+          StatementResult friendFound = trans.run(queryStr, parameters( "friendUserName", friendUserName));
+          trans.success();
+          // we have user and friend in the database
+          if (userFound.hasNext() && friendFound.hasNext()) {
+            // check if the relationship is existed in Neo4j
+            queryStr = "MATCH (user:profile)-[r:follows]->(friend:profile) WHERE user.userName ="
+                + " $userName AND friend.userName = $friendUserName RETURN r";
+            StatementResult result = trans.run(queryStr, parameters("userName",
                 userName, "friendUserName", friendUserName));
             trans.success();
 
+            // if the relationship is existed in Neo4j
+            if (result.hasNext()) {
+              // create or add the relationship node into the database
+              queryStr =
+                  "MATCH (user:profile), (friend:profile) WHERE user.userName = $userName AND"
+                      + " friend.userName = $friendUserName MERGE (user)-[r:follows]->(friend) RETURN r";
+              result = trans.run(queryStr, parameters("userName",
+                  userName, "friendUserName", friendUserName));
+              trans.success();
+
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("Friend is successfully followed");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+            } else {
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("Friendship is existed");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK_EXISTED);
+            }
+          }
+          else {
             // create relationship between the profile and a playlist
-            dbQueryStatus.setMessage("Friend is successfully followed");
-            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-          } else {
-            // create relationship between the profile and a playlist
-            dbQueryStatus.setMessage("Friendship is existed");
-            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK_EXISTED);
+            dbQueryStatus.setMessage("Either user or friend is not found in database");
+            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
           }
         }
       }
@@ -149,27 +168,44 @@ public class ProfileDriverImpl implements ProfileDriver {
     else {
       try (Session session = driver.session()) {
         try (Transaction trans = session.beginTransaction()) {
-          // check if the relationship is existed in Neo4j
-          queryStr = "MATCH (user:profile)-[r:follows]->(friend:profile) WHERE user.userName ="
-              + " $userName AND friend.userName = $friendUserName RETURN r";
-          StatementResult result = trans.run(queryStr, parameters("userName",
-              userName, "friendUserName", friendUserName));
+          // check user
+          queryStr = "MATCH (user:profile)WHERE user.userName ="
+              + " $userName RETURN user";
+          StatementResult userFound = trans.run(queryStr, parameters("userName", userName));
           trans.success();
-          // if the relationship is not existed in Neo4j
-          if (!result.hasNext()) {
-            // create or add the profile node into the database
-            queryStr = "MATCH (user)-[r:follows]->(friend) WHERE user.userName ="
-                + " $userName AND friend.userName = $friendUserName DELETE r";
-            result = trans.run(queryStr, parameters("userName",
+          // check friend
+          queryStr = "MATCH (friend:profile)WHERE friend.userName ="
+              + " $friendUserName RETURN friend";
+          StatementResult friendFound = trans.run(queryStr, parameters( "friendUserName", friendUserName));
+          trans.success();
+          // we have user and friend in the database
+          if (userFound.hasNext() && friendFound.hasNext()) {
+            // check if the relationship is existed in Neo4j
+            queryStr = "MATCH (user:profile)-[r:follows]->(friend:profile) WHERE user.userName ="
+                + " $userName AND friend.userName = $friendUserName RETURN r";
+            StatementResult result = trans.run(queryStr, parameters("userName",
                 userName, "friendUserName", friendUserName));
             trans.success();
-
+            // if the relationship is existed in Neo4j
+            if (result.hasNext()) {
+              // create or add the profile node into the database
+              queryStr = "MATCH (user)-[r:follows]->(friend) WHERE user.userName ="
+                  + " $userName AND friend.userName = $friendUserName DELETE r";
+              result = trans.run(queryStr, parameters("userName",
+                  userName, "friendUserName", friendUserName));
+              trans.success();
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("Friend is successfully unfollowed");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+            } else {
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("Friendship is not existed in database");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+            }
+          }
+          else {
             // create relationship between the profile and a playlist
-            dbQueryStatus.setMessage("Friend is successfully unfollowed");
-            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-          } else {
-            // create relationship between the profile and a playlist
-            dbQueryStatus.setMessage("Friendship is not existed");
+            dbQueryStatus.setMessage("Either user or friend is not found in database");
             dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
           }
         }
@@ -191,38 +227,51 @@ public class ProfileDriverImpl implements ProfileDriver {
     else {
       try (Session session = driver.session()) {
         try (Transaction trans = session.beginTransaction()) {
-          // create or add the profile node into the database
-          queryStr = "match (p:profile)-[r1:follows]->(p2:profile) where p.userName=$userName return collect(p2.userName) as friends";
-          StatementResult result = trans.run(queryStr, parameters("userName",
-              userName));
+          // check user
+          queryStr = "MATCH (user:profile)WHERE user.userName ="
+              + " $userName RETURN user";
+          StatementResult userFound = trans.run(queryStr, parameters("userName", userName));
           trans.success();
-          // if the user is in the database
-          if (result.hasNext()){
-            //Get values from neo4j StatementResult object
-            List<Record> records = result.list();
-            Record record = records.get(0);
-            Map recordMap = record.asMap();
-            JSONObject responseJSON = new JSONObject(recordMap);
-            JSONObject outputJSON = new JSONObject();
-            JSONArray friends = (JSONArray) responseJSON.get("friends");
-            // iterate through the friend in friend list and get songs from their playlist
-            for (int i = 0; i < friends.length(); i++) {
-              String friendName = (String) friends.get(i);
-              queryStr = "match (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song)"
-                  + " where p.userName=$friendName return collect(s.songName) as songs";
-              result = trans.run(queryStr, parameters("friendName",
-                  friendName));
-              trans.success();
-              records = result.list();
-              record = records.get(0);
-              recordMap = record.asMap();
-              JSONObject playlistJSON = new JSONObject(recordMap);
-              outputJSON.put(friendName, playlistJSON.get("songs"));
+          // only execute when the user is found
+          if (userFound.hasNext()) {
+            // create or add the profile node into the database
+            queryStr = "match (p:profile)-[r1:follows]->(p2:profile) where p.userName=$userName return collect(p2.userName) as friends";
+            StatementResult result = trans.run(queryStr, parameters("userName",
+                userName));
+            trans.success();
+            // if the user is in the database
+            if (result.hasNext()) {
+              //Get values from neo4j StatementResult object
+              List<Record> records = result.list();
+              Record record = records.get(0);
+              Map recordMap = record.asMap();
+              JSONObject responseJSON = new JSONObject(recordMap);
+              JSONObject outputJSON = new JSONObject();
+              JSONArray friends = (JSONArray) responseJSON.get("friends");
+              // iterate through the friend in friend list and get songs from their playlist
+              for (int i = 0; i < friends.length(); i++) {
+                String friendName = (String) friends.get(i);
+                queryStr = "match (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song)"
+                    + " where p.userName=$friendName return collect(s.songName) as songs";
+                result = trans.run(queryStr, parameters("friendName",
+                    friendName));
+                trans.success();
+                records = result.list();
+                record = records.get(0);
+                recordMap = record.asMap();
+                JSONObject playlistJSON = new JSONObject(recordMap);
+                outputJSON.put(friendName, playlistJSON.get("songs"));
+              }
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("All playlists are found from friends of this user");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+              dbQueryStatus.setData(outputJSON.toMap());
+            } else {
+              // create relationship between the profile and a playlist
+              dbQueryStatus.setMessage("the user is not found in the database");
+              dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+              dbQueryStatus.setData(null);
             }
-            // create relationship between the profile and a playlist
-            dbQueryStatus.setMessage("All playlists are found from friends of this user");
-            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-            dbQueryStatus.setData(outputJSON.toMap());
           }
           else {
             // create relationship between the profile and a playlist
@@ -236,9 +285,12 @@ public class ProfileDriverImpl implements ProfileDriver {
         // create relationship between the profile and a playlist
         dbQueryStatus.setMessage("Server is out of Service");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+        dbQueryStatus.setData(null);
+        return dbQueryStatus;
       }
     }
     System.out.println(dbQueryStatus.getMessage());
     return dbQueryStatus;
 	}
+
 }
