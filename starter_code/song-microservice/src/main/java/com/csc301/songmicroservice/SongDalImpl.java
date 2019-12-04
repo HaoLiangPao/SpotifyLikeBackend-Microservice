@@ -50,55 +50,70 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus addSong(Song songToAdd) {
-		// TODO Auto-generated method stub
-		// convert the song object to a document object for data base addition
-		Document songDoc = converter.toDocument(songToAdd);
-		// interaction with database
-		collection.insertOne(songDoc);
+		// check if the parameters are all given
+		if (songToAdd == null){
+			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+		}
+		// if there are some parameters missing
+		else {
+			// convert the song object to a document object for data base addition
+			Document songDoc = converter.toDocument(songToAdd);
+			// interaction with database
+			collection.insertOne(songDoc);
 
-		// encapsulation of log message
-		dbQueryStatus.setMessage("Addition is complete, song got added to the data base successfully");
-		dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+			// encapsulation of log message
+			dbQueryStatus
+					.setMessage("Addition is complete, song got added to the data base successfully");
+			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+			System.out.println(dbQueryStatus.getMessage());
+
+			// update the Object ID to the song object
+			Document docAdded = (Document) collection.find(songDoc).iterator().next();
+			songToAdd.setId(docAdded.getObjectId("_id"));
+			// add the updated song object as the data
+			dbQueryStatus.setData(songToAdd);
+		}
 		System.out.println(dbQueryStatus.getMessage());
-
-		// update the Object ID to the song object
-		Document docAdded = (Document) collection.find(songDoc).iterator().next();
-		songToAdd.setId(docAdded.getObjectId("_id"));
-		// add the updated song object as the data
-		dbQueryStatus.setData(songToAdd);
+		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 
 	@Override
 	public DbQueryStatus findSongById(String songId) {
-		// TODO Auto-generated method stub
-		try {
-			objectId = new ObjectId(songId);
-		}
-		catch (Exception e){
-			dbQueryStatus.setMessage("The input songId is invalid");
+		// check if the parameters are all given
+		if (songId == null){
+			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
-			return dbQueryStatus;
 		}
-		Hashtable queryPair = new Hashtable();
-		queryPair.put("_id", objectId);
-		Document query = new Document(queryPair);
-
-		MongoCursor<Document> cursor = collection.find(query).iterator();
-//		System.out.println("set is " + cursor.toString());
-		if (cursor.hasNext()){
-			Document songDocFound = cursor.next();
-			Song songFound = converter.toSong(songDocFound);
-
-			dbQueryStatus.setMessage("The song is successfully found in the database");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-			dbQueryStatus.setData(songFound);
-		}
+		// if there are some parameters missing
 		else {
-			//when object id is not existing int he database.
-			dbQueryStatus.setMessage("The song with id given is not found in the database");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
-			dbQueryStatus.setData(null);
+			try {
+				objectId = new ObjectId(songId);
+			} catch (Exception e) {
+				dbQueryStatus.setMessage("The input songId is invalid");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+				return dbQueryStatus;
+			}
+			Hashtable queryPair = new Hashtable();
+			queryPair.put("_id", objectId);
+			Document query = new Document(queryPair);
+
+			MongoCursor<Document> cursor = collection.find(query).iterator();
+//		System.out.println("set is " + cursor.toString());
+			if (cursor.hasNext()) {
+				Document songDocFound = cursor.next();
+				Song songFound = converter.toSong(songDocFound);
+
+				dbQueryStatus.setMessage("The song is successfully found in the database");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+				dbQueryStatus.setData(songFound);
+			} else {
+				//when object id is not existing int he database.
+				dbQueryStatus.setMessage("The song with id given is not found in the database");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+				dbQueryStatus.setData(null);
+			}
 		}
 		System.out.println(dbQueryStatus.getMessage());
 		return dbQueryStatus;
@@ -106,34 +121,40 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus getSongTitleById(String songId) {
-		// TODO Auto-generated method stub
-		try {
-			objectId = new ObjectId(songId);
-		}
-		catch (Exception e){
-			dbQueryStatus.setMessage("The input songId is invalid");
+		// check if the parameters are all given
+		if (songId == null){
+			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
-			return dbQueryStatus;
 		}
-		Hashtable queryPair = new Hashtable();
-		queryPair.put("_id", objectId);
-		Document query = new Document(queryPair);
-
-		MongoCursor<Document> cursor = collection.find(query).iterator();
-//		System.out.println("set is " + cursor.toString());
-		if (cursor.hasNext()){
-			Document songDocFound = cursor.next();
-			Song songFound = converter.toSong(songDocFound);
-
-			dbQueryStatus.setMessage("The song is successfully found in the database, title is returned");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-			dbQueryStatus.setData(songFound.getSongName());
-		}
+		// if there are some parameters missing
 		else {
-			//when object id is not existing int he database.
-			dbQueryStatus.setMessage("The song with id given is not found in the database");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
-			dbQueryStatus.setData(null);
+			try {
+				objectId = new ObjectId(songId);
+			} catch (Exception e) {
+				dbQueryStatus.setMessage("The input songId is invalid");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+				return dbQueryStatus;
+			}
+			Hashtable queryPair = new Hashtable();
+			queryPair.put("_id", objectId);
+			Document query = new Document(queryPair);
+
+			MongoCursor<Document> cursor = collection.find(query).iterator();
+//		System.out.println("set is " + cursor.toString());
+			if (cursor.hasNext()) {
+				Document songDocFound = cursor.next();
+				Song songFound = converter.toSong(songDocFound);
+
+				dbQueryStatus
+						.setMessage("The song is successfully found in the database, title is returned");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+				dbQueryStatus.setData(songFound.getSongName());
+			} else {
+				//when object id is not existing int he database.
+				dbQueryStatus.setMessage("The song with id given is not found in the database");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+				dbQueryStatus.setData(null);
+			}
 		}
 		System.out.println(dbQueryStatus.getMessage());
 		return dbQueryStatus;
@@ -141,106 +162,117 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus deleteSongById(String songId) {
-		// TODO: handel the case of internal problem
-		//store the id and change the type to be used in a mongodb query
-		try {
-			objectId = new ObjectId(songId);
-		}
-		catch (Exception e){
-			dbQueryStatus.setMessage("The input songId is invalid");
+		// check if the parameters are all given
+		if (songId == null){
+			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
-			return dbQueryStatus;
 		}
-		Hashtable queryPair = new Hashtable();
-		queryPair.put("_id", objectId);
-		Document query = new Document(queryPair);
-		// interact with database for deletion
-		if (collection.deleteOne(query).getDeletedCount() != 0){
-			dbQueryStatus.setMessage("Log: SongMicroService-delete operation is completed");
-			//result for server-client interaction
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-
-			String profileMicroDelete = "http://localhost:3002/deleteAllSongsFromDb/{songId}";
-			// URL parameters
-			Map<String, String> urlParam = new HashMap<String, String>();
-			urlParam.put("songId", songId);
-			// Query parameters
-			UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(profileMicroDelete);
-			// communication with SongMicroService
-			ResponseEntity<String> res = restTemplate.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
-					HttpEntity.EMPTY, String.class);
-			ObjectMapper mapper = new ObjectMapper();
-			try	{
-				JsonNode resJSON = mapper.readTree(res.getBody());
-				JsonNode updateStatus = resJSON.get("status");
-			} catch (IOException e) {
-				dbQueryStatus.setMessage("something went wrong with profileMicroService");
+		// if there are some parameters missing
+		else {
+			//store the id and change the type to be used in a mongodb query
+			try {
+				objectId = new ObjectId(songId);
+			} catch (Exception e) {
+				dbQueryStatus.setMessage("The input songId is invalid");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+				return dbQueryStatus;
+			}
+			Hashtable queryPair = new Hashtable();
+			queryPair.put("_id", objectId);
+			Document query = new Document(queryPair);
+			// interact with database for deletion
+			if (collection.deleteOne(query).getDeletedCount() != 0) {
+				dbQueryStatus.setMessage("Log: SongMicroService-delete operation is completed");
 				//result for server-client interaction
-				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+
+				String profileMicroDelete = "http://localhost:3002/deleteAllSongsFromDb/{songId}";
+				// URL parameters
+				Map<String, String> urlParam = new HashMap<String, String>();
+				urlParam.put("songId", songId);
+				// Query parameters
+				UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(profileMicroDelete);
+				// communication with SongMicroService
+				ResponseEntity<String> res = restTemplate
+						.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
+								HttpEntity.EMPTY, String.class);
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					JsonNode resJSON = mapper.readTree(res.getBody());
+					JsonNode updateStatus = resJSON.get("status");
+				} catch (IOException e) {
+					dbQueryStatus.setMessage("something went wrong with profileMicroService");
+					//result for server-client interaction
+					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+				}
+			} else {
+				dbQueryStatus.setMessage("Error Message: SongMicroService-the post is not found in the"
+						+ " database, delete did not complete");
+				//result for server-client interaction
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
 			}
 		}
-		else  {
-			dbQueryStatus.setMessage("Error Message: SongMicroService-the post is not found in the"
-					+ " database, delete did not complete");
-			//result for server-client interaction
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
-		}
-		dbQueryStatus.setData(null);
 		// log message no matter success or failure
 		System.out.println(dbQueryStatus.getMessage());
+		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 
 	@Override
 	public DbQueryStatus updateSongFavouritesCount(String songId, boolean shouldDecrement) {
-		// TODO Auto-generated method stub
-		try {
-			objectId = new ObjectId(songId);
-		}
-		catch (Exception e){
-			dbQueryStatus.setMessage("The input songId is invalid");
+		// check if the parameters are all given
+		if (songId == null){
+			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
-			return dbQueryStatus;
 		}
-		Hashtable queryPair = new Hashtable();
-		queryPair.put("_id", objectId);
-		Document query = new Document(queryPair);
-		MongoCursor<Document> cursor = collection.find(query).iterator();
-		// the song is found in the database
-		if (cursor.hasNext()){
-			System.out.println("Log-SongMicroService: The song is successfully found in the database");
-			Document songDocFound = cursor.next();
-			Song songFound = converter.toSong(songDocFound);
-			long currentFavo = songFound.getSongAmountFavourites();
-			// if its favorite number should be decrement
-			if (shouldDecrement) {
-				// if currentFavo is at least 1
-				if (currentFavo - 1 >= 0){
-					currentFavo -= 1;
-				}
-			}
-			// if its favorite number should be increment
-			else {
-				currentFavo += 1;
-			}
-			// create filter document
-			BasicDBObjectBuilder builder = BasicDBObjectBuilder.start().append("_id", objectId);
-			Document filter = new Document(builder.get().toMap());
-			// create favo document
-			builder = BasicDBObjectBuilder.start().append("songAmountFavourites", currentFavo);
-			Document favo = new Document(builder.get().toMap());
-			// create update document
-			builder = BasicDBObjectBuilder.start().append("$set", favo);
-			Document update = new Document(builder.get().toMap());
-			collection.updateOne(filter,update);
-
-			dbQueryStatus.setMessage("The favorite number is successfully updated");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-		}
+		// if there are some parameters missing
 		else {
-			//when object id is not existing int he database.
-			dbQueryStatus.setMessage("The song with id given is not found in the database");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+			try {
+				objectId = new ObjectId(songId);
+			} catch (Exception e) {
+				dbQueryStatus.setMessage("The input songId is invalid");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+				return dbQueryStatus;
+			}
+			Hashtable queryPair = new Hashtable();
+			queryPair.put("_id", objectId);
+			Document query = new Document(queryPair);
+			MongoCursor<Document> cursor = collection.find(query).iterator();
+			// the song is found in the database
+			if (cursor.hasNext()) {
+				System.out.println("Log-SongMicroService: The song is successfully found in the database");
+				Document songDocFound = cursor.next();
+				Song songFound = converter.toSong(songDocFound);
+				long currentFavo = songFound.getSongAmountFavourites();
+				// if its favorite number should be decrement
+				if (shouldDecrement) {
+					// if currentFavo is at least 1
+					if (currentFavo - 1 >= 0) {
+						currentFavo -= 1;
+					}
+				}
+				// if its favorite number should be increment
+				else {
+					currentFavo += 1;
+				}
+				// create filter document
+				BasicDBObjectBuilder builder = BasicDBObjectBuilder.start().append("_id", objectId);
+				Document filter = new Document(builder.get().toMap());
+				// create favo document
+				builder = BasicDBObjectBuilder.start().append("songAmountFavourites", currentFavo);
+				Document favo = new Document(builder.get().toMap());
+				// create update document
+				builder = BasicDBObjectBuilder.start().append("$set", favo);
+				Document update = new Document(builder.get().toMap());
+				collection.updateOne(filter, update);
+
+				dbQueryStatus.setMessage("The favorite number is successfully updated");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+			} else {
+				//when object id is not existing int he database.
+				dbQueryStatus.setMessage("The song with id given is not found in the database");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+			}
 		}
 		System.out.println(dbQueryStatus.getMessage());
 		dbQueryStatus.setData(null);

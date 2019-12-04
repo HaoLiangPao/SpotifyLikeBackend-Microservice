@@ -41,8 +41,10 @@ public class Utils {
 			case QUERY_ERROR_GENERIC:
 				response.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
 				break;
+			case QUERY_OK_EXISTED:
+				response.put("status", HttpStatus.ALREADY_REPORTED);
+				break;
 		}
-		
 		return response;
 	}
 }
