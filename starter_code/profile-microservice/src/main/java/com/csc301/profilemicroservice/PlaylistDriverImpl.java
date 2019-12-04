@@ -97,6 +97,10 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 						result = trans.run(queryStr, parameters("plName",
 								plName, "songID", songId));
 						trans.success();
+
+						// communication with SongMicroService
+							// update the favourite count
+
 						// after the relationship is created in Neo4j, favourite number should be increment in
 						// MongoDB through Song MicroService
 						String songMicroUpdate = "http://localhost:3001/updateSongFavouritesCount/{songId}";
@@ -106,12 +110,31 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 						// Query parameters
 						UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(songMicroUpdate)
 								.queryParam("shouldDecrement", "false");
-						// communication with SongMicroService
 						res = restTemplate.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
 								HttpEntity.EMPTY, String.class);
 						mapper = new ObjectMapper();
 						resJSON = mapper.readTree(res.getBody());
 						JsonNode updateStatus = resJSON.get("status");
+
+							// get the songName
+						// MongoDB through Song MicroService
+						String songMicroName = "http://localhost:3001/getSongTitleById/{songId}";
+						// URL parameters stay the same, No query parameters
+						builder = UriComponentsBuilder.fromUriString(songMicroName);
+						res = restTemplate.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.GET,
+								HttpEntity.EMPTY, String.class);
+						mapper = new ObjectMapper();
+						resJSON = mapper.readTree(res.getBody());
+						JsonNode getName = resJSON.get("data");
+
+						// add song name to the node in Neo4j with data required from MongoDB
+						// create or add the profile node into the database
+						queryStr = "MATCH (s:song) WHERE s.songId = $songID"
+								+ " SET s.songName = $songName RETURN s";
+						result = trans.run(queryStr, parameters("songID", songId,
+								"songName", getName.asText()));
+						trans.success();
+
 						// if Song MicroService updated the favourites count
 						if (updateStatus.asText().equals("OK")) {
 							// create relationship between the profile and a playlist

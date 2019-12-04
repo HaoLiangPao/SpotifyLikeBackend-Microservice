@@ -114,7 +114,7 @@ public class SongDalImpl implements SongDal {
 			Document songDocFound = cursor.next();
 			Song songFound = converter.toSong(songDocFound);
 
-			dbQueryStatus.setMessage("The song is successfully found in the database");
+			dbQueryStatus.setMessage("The song is successfully found in the database, title is returned");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
 			dbQueryStatus.setData(songFound.getSongName());
 		}
