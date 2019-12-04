@@ -272,7 +272,21 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus deleteSongFromDb(String songId) {
+		try (Session session = driver.session()){
+			try	(Transaction trans = session.beginTransaction()){
+				// create or add the profile node into the database
+				queryStr = "MATCH (s:song) WHERE s.songId ="
+						+ " $songId DETACH DELETE s";
+				StatementResult result = trans.run(queryStr, parameters("songId", songId));
+				trans.success();
 
-		return null;
+				// create relationship between the profile and a playlist
+				dbQueryStatus.setMessage("Song is successfully deleted from the database");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+			}
+		}
+		System.out.println(dbQueryStatus.getMessage());
+		dbQueryStatus.setData(null);
+		return dbQueryStatus;
 	}
 }

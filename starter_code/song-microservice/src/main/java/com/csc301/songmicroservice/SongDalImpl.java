@@ -1,9 +1,14 @@
 package com.csc301.songmicroservice;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -11,7 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Repository
 public class SongDalImpl implements SongDal {
@@ -19,6 +29,7 @@ public class SongDalImpl implements SongDal {
 	private final MongoTemplate db;
 	private final MongoCollection collection;
 	private final SongConverter converter;
+	private final RestTemplate restTemplate = new RestTemplate();
 	private DbQueryStatus dbQueryStatus = new DbQueryStatus("new query status",
 			DbQueryExecResult.QUERY_OK);
 	private ObjectId objectId;
@@ -148,6 +159,25 @@ public class SongDalImpl implements SongDal {
 			dbQueryStatus.setMessage("Log: SongMicroService-delete operation is completed");
 			//result for server-client interaction
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+
+			String profileMicroDelete = "http://localhost:3002/deleteAllSongsFromDb/{songId}";
+			// URL parameters
+			Map<String, String> urlParam = new HashMap<String, String>();
+			urlParam.put("songId", songId);
+			// Query parameters
+			UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(profileMicroDelete);
+			// communication with SongMicroService
+			ResponseEntity<String> res = restTemplate.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
+					HttpEntity.EMPTY, String.class);
+			ObjectMapper mapper = new ObjectMapper();
+			try	{
+				JsonNode resJSON = mapper.readTree(res.getBody());
+				JsonNode updateStatus = resJSON.get("status");
+			} catch (IOException e) {
+				dbQueryStatus.setMessage("something went wrong with profileMicroService");
+				//result for server-client interaction
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+			}
 		}
 		else  {
 			dbQueryStatus.setMessage("Error Message: SongMicroService-the post is not found in the"
@@ -211,9 +241,9 @@ public class SongDalImpl implements SongDal {
 			//when object id is not existing int he database.
 			dbQueryStatus.setMessage("The song with id given is not found in the database");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
-			dbQueryStatus.setData(null);
 		}
 		System.out.println(dbQueryStatus.getMessage());
+		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 }
