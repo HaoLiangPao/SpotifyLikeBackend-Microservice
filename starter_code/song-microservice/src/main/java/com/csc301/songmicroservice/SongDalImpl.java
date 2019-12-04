@@ -49,33 +49,44 @@ public class SongDalImpl implements SongDal {
 	}
 
 	@Override
-	public DbQueryStatus addSong(Song songToAdd) {
+	public DbQueryStatus addSong(Map songParams) {
 		// check if the parameters are all given
-		if (songToAdd == null){
+		if (songParams == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 		}
 		// if there are some parameters missing
 		else {
-			// convert the song object to a document object for data base addition
-			Document songDoc = converter.toDocument(songToAdd);
-			// interaction with database
-			collection.insertOne(songDoc);
+			try {
+				// create a song object
+				String songName = (String) songParams.get("songName");
+				String songArtist = (String) songParams.get("songArtistFullName");
+				String songAlbum = (String) songParams.get("songAlbum");
+				Song songToAdd = new Song(songName, songArtist, songAlbum);
 
-			// encapsulation of log message
-			dbQueryStatus
-					.setMessage("Addition is complete, song got added to the data base successfully");
-			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-			System.out.println(dbQueryStatus.getMessage());
+				// convert the song object to a document object for data base addition
+				Document songDoc = converter.toDocument(songToAdd);
+				// interaction with database
+				collection.insertOne(songDoc);
 
-			// update the Object ID to the song object
-			Document docAdded = (Document) collection.find(songDoc).iterator().next();
-			songToAdd.setId(docAdded.getObjectId("_id"));
-			// add the updated song object as the data
-			dbQueryStatus.setData(songToAdd);
+				// encapsulation of log message
+				dbQueryStatus
+						.setMessage("Addition is complete, song got added to the data base successfully");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+				System.out.println(dbQueryStatus.getMessage());
+
+				// update the Object ID to the song object
+				Document docAdded = (Document) collection.find(songDoc).iterator().next();
+				songToAdd.setId(docAdded.getObjectId("_id"));
+				// add the updated song object as the data
+				dbQueryStatus.setData(songToAdd);
+			}
+			catch (Exception e) {
+				dbQueryStatus.setMessage("Song addition failed");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
+			}
 		}
 		System.out.println(dbQueryStatus.getMessage());
-		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 
@@ -95,24 +106,30 @@ public class SongDalImpl implements SongDal {
 				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 				return dbQueryStatus;
 			}
-			Hashtable queryPair = new Hashtable();
-			queryPair.put("_id", objectId);
-			Document query = new Document(queryPair);
+			try {
+				Hashtable queryPair = new Hashtable();
+				queryPair.put("_id", objectId);
+				Document query = new Document(queryPair);
 
-			MongoCursor<Document> cursor = collection.find(query).iterator();
+				MongoCursor<Document> cursor = collection.find(query).iterator();
 //		System.out.println("set is " + cursor.toString());
-			if (cursor.hasNext()) {
-				Document songDocFound = cursor.next();
-				Song songFound = converter.toSong(songDocFound);
+				if (cursor.hasNext()) {
+					Document songDocFound = cursor.next();
+					Song songFound = converter.toSong(songDocFound);
 
-				dbQueryStatus.setMessage("The song is successfully found in the database");
-				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
-				dbQueryStatus.setData(songFound);
-			} else {
-				//when object id is not existing int he database.
-				dbQueryStatus.setMessage("The song with id given is not found in the database");
-				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
-				dbQueryStatus.setData(null);
+					dbQueryStatus.setMessage("The song is successfully found in the database");
+					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+					dbQueryStatus.setData(songFound);
+				} else {
+					//when object id is not existing int he database.
+					dbQueryStatus.setMessage("The song with id given is not found in the database");
+					dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
+					dbQueryStatus.setData(null);
+				}
+			}
+			catch (Exception e) {
+				dbQueryStatus.setMessage("Find Song failed");
+				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
 			}
 		}
 		System.out.println(dbQueryStatus.getMessage());
@@ -192,7 +209,7 @@ public class SongDalImpl implements SongDal {
 				urlParam.put("songId", songId);
 				// Query parameters
 				UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(profileMicroDelete);
-				// communication with SongMicroService
+				// communication with ProfileMicroService
 				ResponseEntity<String> res = restTemplate
 						.exchange(builder.buildAndExpand(urlParam).toUri(), HttpMethod.PUT,
 								HttpEntity.EMPTY, String.class);
@@ -219,9 +236,9 @@ public class SongDalImpl implements SongDal {
 	}
 
 	@Override
-	public DbQueryStatus updateSongFavouritesCount(String songId, boolean shouldDecrement) {
-		// check if the parameters are all given
-		if (songId == null){
+	public DbQueryStatus updateSongFavouritesCount(String songId, String shouldDecrementString) {
+		// check if the parameters are all given and shouldDecrement String is correct
+		if (songId == null || shouldDecrementString != "true" || shouldDecrementString != "false"){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 		}
@@ -232,8 +249,11 @@ public class SongDalImpl implements SongDal {
 			} catch (Exception e) {
 				dbQueryStatus.setMessage("The input songId is invalid");
 				dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
+				dbQueryStatus.setData(null);
 				return dbQueryStatus;
 			}
+			// change the String input to boolean for further operation
+			boolean shouldDecrement = Boolean.parseBoolean(shouldDecrementString);
 			Hashtable queryPair = new Hashtable();
 			queryPair.put("_id", objectId);
 			Document query = new Document(queryPair);

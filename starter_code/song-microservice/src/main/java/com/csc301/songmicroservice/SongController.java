@@ -85,16 +85,10 @@ public class SongController {
 	public @ResponseBody Map<String, Object> addSong(@RequestParam Map<String, String> params,
 			HttpServletRequest request) {
 
-		// create a song object
-		String songName = params.get("songName");
-		String songArtist = params.get("songArtistFullName");
-		String songAlbum = params.get("songAlbum");
-		Song newSong = new Song(songName, songArtist, songAlbum);
-
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
 
-		DbQueryStatus dbQueryStatus = songDal.addSong(newSong);
+		DbQueryStatus dbQueryStatus = songDal.addSong(params);
 
 		response.put("message", dbQueryStatus.getMessage());
 		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());
@@ -110,7 +104,7 @@ public class SongController {
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 
-		DbQueryStatus dbQueryStatus = songDal.updateSongFavouritesCount(songId, Boolean.parseBoolean(shouldDecrement));
+		DbQueryStatus dbQueryStatus = songDal.updateSongFavouritesCount(songId, shouldDecrement);
 
 		response.put("message", dbQueryStatus.getMessage());
 		response = Utils.setResponseStatus(response, dbQueryStatus.getdbQueryExecResult(), dbQueryStatus.getData());

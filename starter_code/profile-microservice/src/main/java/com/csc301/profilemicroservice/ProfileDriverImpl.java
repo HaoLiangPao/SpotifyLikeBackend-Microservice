@@ -45,29 +45,6 @@ public class ProfileDriverImpl implements ProfileDriver {
 	
 	@Override
   public DbQueryStatus createUserProfile(String userName, String fullName, String password) {
-    try (Session session = driver.session()){
-      try	(Transaction trans = session.beginTransaction()){
-        // create or add the profile node into the database
-        queryStr = "MERGE (p:profile{userName:$userName}) SET p.fullName = $fullName, p.password = "
-            + "$password RETURN p.userName, p.fullName";
-        StatementResult result = trans.run(queryStr, parameters("userName",
-            userName, "fullName", fullName, "password", password));
-        trans.success();
-        System.out.println("Log-ProfileMicroService: profile is successfully created");
-        //Get values from neo4j StatementResult object
-        List<Record> records = result.list();
-        Record record = records.get(0);
-        Map recordMap = record.asMap();
-
-        // create relationship between the profile and a playlist
-        String plName = userName + "-favorites";
-        queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
-            + " {plName:$plName}) RETURN r";
-        result = trans.run(queryStr, parameters("userName",
-            userName, "plName", plName));
-        trans.success();
-        System.out.println("Log-ProfileMicroService: playlist associate to the profile is "
-            + "successfully created as well");
 	  // check if the parameters are all given
 	  if (userName == null || fullName == null || password == null){
 	    dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
