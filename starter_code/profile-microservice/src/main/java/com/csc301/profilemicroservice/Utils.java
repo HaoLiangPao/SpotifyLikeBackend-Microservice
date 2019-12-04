@@ -24,7 +24,7 @@ public class Utils {
 	}
 	
 	// Sets the response status and data for a response from the server. You will not always be able to use this function
-	public static Map<String, Object> setResponseStatus(Map<String, Object> response, DbQueryExecResult dbQueryExecResult, Object data) {	
+	public static Map<String, Object> setResponseStatus(Map<String, Object> response, DbQueryExecResult dbQueryExecResult, Object data) {
 		switch (dbQueryExecResult) {
 		case QUERY_OK:
 			response.put("status", HttpStatus.OK);

@@ -52,7 +52,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 	public DbQueryStatus likeSong(String userName, String songId) {
 		try (Session session = driver.session()){
 			try	(Transaction trans = session.beginTransaction()){
-				String plName = userName + "-favorite";
+				String plName = userName + "-favorites";
 
 				// check if the songId is already in the database (request from MongoDB)
 				String songMicroGet = "http://localhost:3001/getSongById/{songId}";
@@ -138,7 +138,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 						// if Song MicroService updated the favourites count
 						if (updateStatus.asText().equals("OK")) {
 							// create relationship between the profile and a playlist
-							dbQueryStatus.setMessage("Song is successfully added to user's favorite");
+							dbQueryStatus.setMessage("Song is successfully added to user's favorites");
 							dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
 						}
 						// if the Song MicroService went wrong for some reason
@@ -166,6 +166,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 			session.close();
 		}
 		System.out.println(dbQueryStatus.getMessage());
+		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 
@@ -173,7 +174,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 	public DbQueryStatus unlikeSong(String userName, String songId) {
 		try (Session session = driver.session()){
 			try	(Transaction trans = session.beginTransaction()){
-				String plName = userName + "-favorite";
+				String plName = userName + "-favorites";
 
 				// check if the songId is already in the database (request from MongoDB)
 				String songMicroGet = "http://localhost:3001/getSongById/{songId}";
@@ -237,7 +238,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 						// if Song MicroService updated the favourites count
 						if (updateStatus.asText().equals("OK")) {
 							// create relationship between the profile and a playlist
-							dbQueryStatus.setMessage("Song is successfully removed to user's favorite");
+							dbQueryStatus.setMessage("Song is successfully removed to user's favorites");
 							dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
 						}
 						// if the Song MicroService went wrong for some reason
@@ -265,6 +266,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 			session.close();
 		}
 		System.out.println(dbQueryStatus.getMessage());
+		dbQueryStatus.setData(null);
 		return dbQueryStatus;
 	}
 

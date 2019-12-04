@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
@@ -58,7 +60,7 @@ public class ProfileDriverImpl implements ProfileDriver {
         Map recordMap = record.asMap();
 
         // create relationship between the profile and a playlist
-        String plName = userName + "-favorite";
+        String plName = userName + "-favorites";
         queryStr = "MATCH (p {userName:$userName}) CREATE (p)-[r:created]->(l:playlist"
             + " {plName:$plName}) RETURN r";
         result = trans.run(queryStr, parameters("userName",
@@ -87,17 +89,13 @@ public class ProfileDriverImpl implements ProfileDriver {
             userName, "friendUserName", friendUserName));
         trans.success();
 
-//        //Get values from neo4j StatementResult object
-//        List<Record> records = result.list();
-//        Record record = records.get(0);
-//        Map recordMap = record.asMap();
-
         // create relationship between the profile and a playlist
         dbQueryStatus.setMessage("Friend is successfully followed");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
       }
     }
     System.out.println(dbQueryStatus.getMessage());
+    dbQueryStatus.setData(null);
     return dbQueryStatus;
 	}
 
@@ -118,6 +116,7 @@ public class ProfileDriverImpl implements ProfileDriver {
       }
     }
     System.out.println(dbQueryStatus.getMessage());
+    dbQueryStatus.setData(null);
     return dbQueryStatus;
 	}
 
@@ -126,15 +125,37 @@ public class ProfileDriverImpl implements ProfileDriver {
     try (Session session = driver.session()){
       try	(Transaction trans = session.beginTransaction()){
         // create or add the profile node into the database
-        queryStr = "MATCH (user)-[r:follows]->(friend) WHERE user.userName ="
-            + " $userName AND friend.userName = $friendUserName DELETE r";
+        queryStr = "match (p:profile)-[r1:follows]->(p2:profile) where p.userName=$userName return collect(p2.userName) as friends";
         StatementResult result = trans.run(queryStr, parameters("userName",
             userName));
         trans.success();
+        //Get values from neo4j StatementResult object
+        List<Record> records = result.list();
+        Record record = records.get(0);
+        Map recordMap = record.asMap();
+        JSONObject responseJSON = new JSONObject(recordMap);
+        JSONObject outputJSON = new JSONObject();
+        JSONArray friends = (JSONArray) responseJSON.get("friends");
+
+        // iterate through the friend in friend list and get songs from their playlist
+        for (int i=0; i < friends.length(); i++) {
+          String friendName = (String) friends.get(i);
+          queryStr = "match (p:profile)-[r1:created]->(l:playlist)-[r2:includes]->(s:song)"
+              + " where p.userName=$friendName return collect(s.songName) as songs";
+          result = trans.run(queryStr, parameters("friendName",
+              friendName));
+          trans.success();
+          records = result.list();
+          record = records.get(0);
+          recordMap = record.asMap();
+          JSONObject playlistJSON = new JSONObject(recordMap);
+          outputJSON.put(friendName,playlistJSON.get("songs"));
+        }
 
         // create relationship between the profile and a playlist
-        dbQueryStatus.setMessage("Friend is successfully unfollowed");
+        dbQueryStatus.setMessage("All playlists are found from friends of this user");
         dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+        dbQueryStatus.setData(outputJSON.toMap());
       }
     }
     System.out.println(dbQueryStatus.getMessage());
