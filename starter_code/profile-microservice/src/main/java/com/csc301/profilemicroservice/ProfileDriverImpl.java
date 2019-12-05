@@ -126,7 +126,7 @@ public class ProfileDriverImpl implements ProfileDriver {
             trans.success();
 
             // if the relationship is existed in Neo4j
-            if (result.hasNext()) {
+            if (!result.hasNext()) {
               // create or add the relationship node into the database
               queryStr =
                   "MATCH (user:profile), (friend:profile) WHERE user.userName = $userName AND"
