@@ -9,7 +9,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class SongConverter {
-
+    // convert a song to document
     public Document toDocument(Song song){
         BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
                 .append("songName", song.getSongName()).append("songArtistFullName", song.getSongArtistFullName())
@@ -19,7 +19,7 @@ public class SongConverter {
         return document;
     }
 
-    // convert DBObject Object to Person
+    // convert DBObject Object to song
     // take special note of converting ObjectId to String
     public Song toSong(Document doc) {
         Song s = new Song((String) doc.get(Song.KEY_SONG_NAME),

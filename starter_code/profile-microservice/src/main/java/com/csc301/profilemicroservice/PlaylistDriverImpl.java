@@ -36,6 +36,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 	StatementResult result;
 
 	public static void InitPlaylistDb() {
+	    // initialize playlist database
 		String queryStr;
 
 		try (Session session = ProfileMicroserviceApplication.driver.session()) {
@@ -50,6 +51,8 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus likeSong(String userName, String songId) {
+	    // Method does implementation of add songid to a user's favorite list
+        // and return QbQueryStatus
 		// check if the parameters are all given
 		if (userName == null || songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -181,6 +184,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
               dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
             }
           }
+          // else the profile is not found in neo4j database
           else {
             dbQueryStatus.setMessage("Sorry, the User is not found in our DataBase");
             dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
@@ -200,6 +204,8 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus unlikeSong(String userName, String songId) {
+        // Method does implementation of remove songid from a user's favorite list
+        // and return QbQueryStatus
 		// check if the parameters are all given
 		if (userName == null || songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -297,6 +303,7 @@ public class PlaylistDriverImpl implements PlaylistDriver {
                   dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_GENERIC);
                 }
               } else {
+                  // if the the user does not have liked song originally
                 dbQueryStatus.setMessage("Song is not in user's favourites originally");
                 dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_NOT_FOUND);
               }
@@ -327,12 +334,15 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus deleteSongFromDb(String songId) {
+        // Method does implementation of delete a song from everywhere in database
+        // and return QbQueryStatus
 		// check if the parameters are all given
+        // if there are some parameters missing
 		if (songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 			dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
 		}
-		// if there are some parameters missing
+		// if the parameters are all given
 		else {
 			try (Session session = driver.session()) {
 				try (Transaction trans = session.beginTransaction()) {

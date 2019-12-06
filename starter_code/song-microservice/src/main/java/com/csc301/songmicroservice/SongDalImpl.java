@@ -50,6 +50,7 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus addSong(Map songParams) {
+		// Method does the implementation of add song into database then return a DbQueryStatus
 		// check if the parameters are all given
 		if (songParams == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -92,6 +93,8 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus findSongById(String songId) {
+		// Method does the implementation of find song given an id
+		// then return a DbQueryStatus containing song info
 		// check if the parameters are all given
 		if (songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -138,6 +141,7 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus getSongTitleById(String songId) {
+		// Method does the implementation of get the title of song given the id then return a DbQueryStatus
 		// check if the parameters are all given
 		if (songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -179,6 +183,7 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus deleteSongById(String songId) {
+		// Method does the implementation of remove song from database then return a DbQueryStatus
 		// check if the parameters are all given
 		if (songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -237,6 +242,8 @@ public class SongDalImpl implements SongDal {
 
 	@Override
 	public DbQueryStatus updateSongFavouritesCount(String songId, String shouldDecrementString) {
+		// Method does the implementation of update song's favorite number in database
+		// then return a DbQueryStatus
 		// check if the parameters are all given and shouldDecrement String is correct
 		if (songId == null || shouldDecrementString == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
