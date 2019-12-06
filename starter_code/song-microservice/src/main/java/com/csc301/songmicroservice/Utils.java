@@ -24,22 +24,24 @@ public class Utils {
 	}
 	
 	// Sets the response status and data for a response from the server. You will not always be able to use this function
-	public static Map<String, Object> setResponseStatus(Map<String, Object> response, DbQueryExecResult dbQueryExecResult, Object data) {	
+	public static Map<String, Object> setResponseStatus(Map<String, Object> response, DbQueryExecResult dbQueryExecResult, Object data) {
 		switch (dbQueryExecResult) {
-		case QUERY_OK:
-			response.put("status", HttpStatus.OK);
-			if (data != null) {
-				response.put("data", data);
-			}
-			break;
-		case QUERY_ERROR_NOT_FOUND:
-			response.put("status", HttpStatus.NOT_FOUND);
-			break;
-		case QUERY_ERROR_GENERIC:
-			response.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
-			break;
+			case QUERY_ERROR_BAD_REQUEST:
+				response.put("status", HttpStatus.BAD_REQUEST);
+				break;
+			case QUERY_OK:
+				response.put("status", HttpStatus.OK);
+				if (data != null) {
+					response.put("data", data);
+				}
+				break;
+			case QUERY_ERROR_NOT_FOUND:
+				response.put("status", HttpStatus.NOT_FOUND);
+				break;
+			case QUERY_ERROR_GENERIC:
+				response.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+				break;
 		}
-		
 		return response;
 	}
 }
