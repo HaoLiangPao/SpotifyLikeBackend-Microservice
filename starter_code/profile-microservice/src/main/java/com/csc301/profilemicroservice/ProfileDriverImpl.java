@@ -46,8 +46,9 @@ public class ProfileDriverImpl implements ProfileDriver {
 	
 	@Override
   public DbQueryStatus createUserProfile(String userName, String fullName, String password) {
-      // Method does implementation of create profile and return QbQueryStatus
+	  // Method does implementation of create profile and return QbQueryStatus
 	  // check if the parameters are all given
+
 	  if (userName == null || fullName == null || password == null){
 	    dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
 	    dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
@@ -100,6 +101,7 @@ public class ProfileDriverImpl implements ProfileDriver {
 	public DbQueryStatus followFriend(String userName, String friendUserName) {
 	  // Method does implementation of follow relationship and return QbQueryStatus
     // check if the parameters are all given, and two names are not equal
+
     if (userName == null || friendUserName == null || userName.equals(friendUserName)){
       dbQueryStatus.setMessage("parameters are missing / or given names are the same,"
           + " please double check the parameters");
@@ -162,8 +164,9 @@ public class ProfileDriverImpl implements ProfileDriver {
 
 	@Override
 	public DbQueryStatus unfollowFriend(String userName, String friendUserName) {
-      // Method does implementation of unfollow relationship and return QbQueryStatus
+	  // Method does implementation of unfollow relationship and return QbQueryStatus
     // check if the parameters are all given
+
     if (userName == null || friendUserName == null || userName == friendUserName){
       dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
       dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
@@ -222,8 +225,9 @@ public class ProfileDriverImpl implements ProfileDriver {
 
 	@Override
 	public DbQueryStatus getAllSongFriendsLike(String userName) {
-      // Method does implementation of get all song of the given user's friend like and return QbQueryStatus
-    // check if the parameters are all given
+	  // Method does implementation of get all song of the given user's friend like and
+    // return QbQueryStatus check if the parameters are all given
+
     if (userName == null){
       dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
       dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);

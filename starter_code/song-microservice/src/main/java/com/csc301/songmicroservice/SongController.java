@@ -72,6 +72,7 @@ public class SongController {
 			HttpServletRequest request) {
 		// function takes in songid of a song as request body and remove song from database
 		// then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("DELETE %s", Utils.getUrl(request)));
 		// call deletesongbyid method in songDal to do the work
@@ -89,6 +90,7 @@ public class SongController {
 			HttpServletRequest request) {
 		// function takes in songid of a song as request body and add the song into database
 		// then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
 		// call addsong method in songDal to do the work
@@ -104,8 +106,10 @@ public class SongController {
 	@RequestMapping(value = "/updateSongFavouritesCount/{songId}", method = RequestMethod.PUT)
 	public @ResponseBody Map<String, Object> updateFavouritesCount(@PathVariable("songId") String songId,
 			@RequestParam("shouldDecrement") String shouldDecrement, HttpServletRequest request) {
-		// function takes in songid of a song and a boolean indicate if the favourite number is decreasing or not
-		// as request body and manipulate the number of favourite of song in database then return response body
+		// function takes in songid of a song and a boolean indicate if the favourite number is
+		// decreasing or not as request body and manipulate the number of favourite of song in
+		// database then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call updatesongfavouritescount method in songDal to do the work

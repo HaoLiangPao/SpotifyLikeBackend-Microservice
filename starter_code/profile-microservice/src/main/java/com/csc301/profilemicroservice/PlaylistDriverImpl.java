@@ -51,8 +51,9 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus likeSong(String userName, String songId) {
-	    // Method does implementation of add songid to a user's favorite list
-        // and return QbQueryStatus
+	  // Method does implementation of add songid to a user's favorite list
+    // and return QbQueryStatus
+
 		// check if the parameters are all given
 		if (userName == null || songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -204,8 +205,9 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus unlikeSong(String userName, String songId) {
-        // Method does implementation of remove songid from a user's favorite list
-        // and return QbQueryStatus
+	  // Method does implementation of remove songid from a user's favorite list
+    // and return QbQueryStatus
+
 		// check if the parameters are all given
 		if (userName == null || songId == null){
 			dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
@@ -334,8 +336,9 @@ public class PlaylistDriverImpl implements PlaylistDriver {
 
 	@Override
 	public DbQueryStatus deleteSongFromDb(String songId) {
-        // Method does implementation of delete a song from everywhere in database
-        // and return QbQueryStatus
+	  // Method does implementation of delete a song from everywhere in database
+    // and return QbQueryStatus
+
 		// check if the parameters are all given
         // if there are some parameters missing
 		if (songId == null){

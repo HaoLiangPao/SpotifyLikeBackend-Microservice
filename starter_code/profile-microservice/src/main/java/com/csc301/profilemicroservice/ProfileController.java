@@ -51,6 +51,7 @@ public class ProfileController {
 			HttpServletRequest request) {
 		// function takes in username, fullname, password as request body
 		// and create profile then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("POST %s", Utils.getUrl(request)));
 		// taking userName, fullName, and password parameters to create user profile
@@ -69,6 +70,7 @@ public class ProfileController {
 			@PathVariable("friendUserName") String friendUserName, HttpServletRequest request) {
 		// function takes in tow username as request body and
 		// create followfriend relationship then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call followfriend method in profileDriver to create relationship between two profiles
@@ -84,6 +86,7 @@ public class ProfileController {
 	public @ResponseBody Map<String, Object> getAllFriendFavouriteSongTitles(@PathVariable("userName") String userName,
 			HttpServletRequest request) {
 		// function takes in username and find all his friends' liked song then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("GET %s", Utils.getUrl(request)));
 		// call getAllSongFriendsLike method in profile driver to get the friend and song list
@@ -101,6 +104,7 @@ public class ProfileController {
 			@PathVariable("friendUserName") String friendUserName, HttpServletRequest request) {
 		// function takes in 2 usernames as request body
 		// and end the follow relationship between them then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call unfollowfriend method in profiledriver to undo the follow relationship
@@ -117,6 +121,7 @@ public class ProfileController {
 			@PathVariable("songId") String songId, HttpServletRequest request) {
 		// function takes in username and sondid as request body and add song into user's favourite list
 		// then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call like song in playlistdriver to create like relationship
@@ -133,6 +138,7 @@ public class ProfileController {
 			@PathVariable("songId") String songId, HttpServletRequest request) {
 		// function takes username and songid as request body and remove song from user's favourite list
 		// then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call unlikesong methods in playlistdriver to create like relationship
@@ -149,6 +155,7 @@ public class ProfileController {
 			HttpServletRequest request) {
 		// function takes in songid as request body and remove the song everywhere in the profile
 		// then return response body
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("path", String.format("PUT %s", Utils.getUrl(request)));
 		// call deleteSongFromDb method of playlistDriver to do the implementation
