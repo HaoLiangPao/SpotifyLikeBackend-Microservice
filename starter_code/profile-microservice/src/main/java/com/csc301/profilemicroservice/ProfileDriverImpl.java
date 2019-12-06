@@ -98,8 +98,9 @@ public class ProfileDriverImpl implements ProfileDriver {
 	@Override
 	public DbQueryStatus followFriend(String userName, String friendUserName) {
     // check if the parameters are all given, and two names are not equal
-    if (userName == null || friendUserName == null || userName == friendUserName){
-      dbQueryStatus.setMessage("parameters are missing, please double check the parameters");
+    if (userName == null || friendUserName == null || userName.equals(friendUserName)){
+      dbQueryStatus.setMessage("parameters are missing / or given names are the same,"
+          + " please double check the parameters");
       dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_ERROR_BAD_REQUEST);
     }
     // if there are some parameters missing
