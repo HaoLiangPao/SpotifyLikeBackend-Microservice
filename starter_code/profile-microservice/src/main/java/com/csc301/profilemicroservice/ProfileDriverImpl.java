@@ -83,8 +83,10 @@ public class ProfileDriverImpl implements ProfileDriver {
             dbQueryStatus.setMessage("profile is created and added to the database");
             dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
           }
-          dbQueryStatus.setMessage("profile is already existed in the database");
-          dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK_EXISTED);
+          else {
+            dbQueryStatus.setMessage("profile is already existed in the database");
+            dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK_EXISTED);
+          }
         }
         session.close();
       }

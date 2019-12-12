@@ -24,8 +24,4 @@ public class SongConverter {
         s.setSongAmountFavourites((Long) doc.get("songAmountFavourites"));
         return s;
     }
-
-//    public postConvertor getPostConvertor(){
-//        return this;
-//    }
 }
