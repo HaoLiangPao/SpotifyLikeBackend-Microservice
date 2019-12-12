@@ -2,9 +2,6 @@ package com.csc301.profilemicroservice;
 
 import static org.neo4j.driver.v1.Values.parameters;
 
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,7 +84,7 @@ public class ProfileDriverImpl implements ProfileDriver {
             dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
           }
           dbQueryStatus.setMessage("profile is already existed in the database");
-          dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK);
+          dbQueryStatus.setdbQueryExecResult(DbQueryExecResult.QUERY_OK_EXISTED);
         }
         session.close();
       }

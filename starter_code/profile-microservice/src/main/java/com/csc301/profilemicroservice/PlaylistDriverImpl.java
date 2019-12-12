@@ -2,27 +2,19 @@ package com.csc301.profilemicroservice;
 
 import static org.neo4j.driver.v1.Values.parameters;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jndi.toolkit.url.Uri;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.neo4j.driver.v1.Transaction;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 

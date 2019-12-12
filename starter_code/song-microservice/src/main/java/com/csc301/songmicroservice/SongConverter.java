@@ -1,12 +1,7 @@
 package com.csc301.songmicroservice;
 import com.mongodb.BasicDBObjectBuilder;
 
-import com.mongodb.DBObject;
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
-import java.util.ArrayList;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 
 public class SongConverter {
     // convert a song to document

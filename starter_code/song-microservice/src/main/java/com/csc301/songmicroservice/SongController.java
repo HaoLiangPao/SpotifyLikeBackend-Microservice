@@ -1,21 +1,12 @@
 package com.csc301.songmicroservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Call;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
