@@ -1,0 +1,115 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.csc301:song-microservice >--------------------
+[INFO] Building song-microservice 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ song-microservice ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ song-microservice ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 9 source files to /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/target/classes
+[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/main/java/com/csc301/songmicroservice/Utils.java: /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/main/java/com/csc301/songmicroservice/Utils.java uses or overrides a deprecated API.
+[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/main/java/com/csc301/songmicroservice/Utils.java: Recompile with -Xlint:deprecation for details.
+[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/main/java/com/csc301/songmicroservice/SongConverter.java: Some input files use unchecked or unsafe operations.
+[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/main/java/com/csc301/songmicroservice/SongConverter.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ song-microservice ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ song-microservice ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ song-microservice ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.csc301.songmicroservice.SongMicroserviceApplicationTests
+02:08:33.057 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.065 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+02:08:33.076 [main] INFO org.springframework.core.KotlinDetector - Kotlin reflection implementation not found at runtime, related features won't be available.
+02:08:33.085 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+02:08:33.117 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+02:08:33.149 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests], using SpringBootContextLoader
+02:08:33.156 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]: class path resource [com/csc301/songmicroservice/SongMicroserviceApplicationTests-context.xml] does not exist
+02:08:33.157 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]: class path resource [com/csc301/songmicroservice/SongMicroserviceApplicationTestsContext.groovy] does not exist
+02:08:33.157 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+02:08:33.158 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]: SongMicroserviceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:08:33.232 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.403 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/target/classes/com/csc301/songmicroservice/SongMicroserviceApplication.class]
+02:08:33.405 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.csc301.songmicroservice.SongMicroserviceApplication for test class com.csc301.songmicroservice.SongMicroserviceApplicationTests
+02:08:33.578 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]: using defaults.
+02:08:33.579 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+02:08:33.644 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1d2adfbe, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@36902638, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@223d2c72, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@8f4ea7c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@436813f3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@74fe5c40, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3febb011, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@10e31a9a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@131774fe, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@158d2680, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@77847718, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7f3b84b8]
+02:08:33.649 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.650 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.651 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.651 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.657 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.657 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.662 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@3349e9bb testClass = SongMicroserviceApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@409bf450 testClass = SongMicroserviceApplicationTests, locations = '{}', classes = '{class com.csc301.songmicroservice.SongMicroserviceApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@76b0bfab, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@78e67e0a, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@436e852b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@5bfbf16f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+02:08:33.663 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.663 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.songmicroservice.SongMicroserviceApplicationTests]
+02:08:33.709 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.7.RELEASE)
+
+2019-12-14 02:08:34.111  WARN 25020 --- [           main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/choyiny/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/Users/choyiny/.m2/repository/org/json/json/20190722/json-20190722.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-12-14 02:08:34.138  INFO 25020 --- [           main] c.c.s.SongMicroserviceApplicationTests   : Starting SongMicroserviceApplicationTests on choyin.local with PID 25020 (started by choyiny in /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice)
+2019-12-14 02:08:34.141  INFO 25020 --- [           main] c.c.s.SongMicroserviceApplicationTests   : No active profile set, falling back to default profiles: default
+2019-12-14 02:08:34.605  WARN 25020 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-12-14 02:08:35.124  INFO 25020 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-14 02:08:35.185  INFO 25020 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39ms. Found 0 repository interfaces.
+2019-12-14 02:08:36.317  INFO 25020 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2019-12-14 02:08:36.317  INFO 25020 --- [           main] org.mongodb.driver.cluster               : Adding discovered server localhost:27017 to client view of cluster
+2019-12-14 02:08:36.467  INFO 25020 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:1}] to localhost:27017
+2019-12-14 02:08:36.472  INFO 25020 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 1]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4317096}
+2019-12-14 02:08:36.474  INFO 25020 --- [localhost:27017] org.mongodb.driver.cluster               : Discovered cluster type of STANDALONE
+2019-12-14 02:08:36.730  WARN 25020 --- [           main] o.s.d.m.c.m.BasicMongoPersistentProperty : Customizing field name for id property not allowed! Custom name will not be considered!
+2019-12-14 02:08:36.919  INFO 25020 --- [           main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:2}] to localhost:27017
+2019-12-14 02:08:38.121  INFO 25020 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-14 02:08:38.599  INFO 25020 --- [           main] c.c.s.SongMicroserviceApplicationTests   : Started SongMicroserviceApplicationTests in 4.875 seconds (JVM running for 6.073)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.061 s - in com.csc301.songmicroservice.SongMicroserviceApplicationTests
+2019-12-14 02:08:38.946  INFO 25020 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-12-14 02:08:38.948  INFO 25020 --- [       Thread-3] org.mongodb.driver.connection            : Closed connection [connectionId{localValue:2, serverValue:2}] to localhost:27017 because the pool has been closed.
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ song-microservice ---
+[INFO] Building jar: /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/target/song-microservice-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.1.7.RELEASE:repackage (repackage) @ song-microservice ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ song-microservice ---
+[INFO] Installing /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/target/song-microservice-0.0.1-SNAPSHOT.jar to /Users/choyiny/.m2/repository/com/csc301/song-microservice/0.0.1-SNAPSHOT/song-microservice-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/song-microservice/pom.xml to /Users/choyiny/.m2/repository/com/csc301/song-microservice/0.0.1-SNAPSHOT/song-microservice-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.126 s
+[INFO] Finished at: 2019-12-14T02:08:40-05:00
+[INFO] ------------------------------------------------------------------------

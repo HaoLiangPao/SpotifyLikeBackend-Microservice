@@ -10,18 +10,14 @@
 [INFO] Copying 0 resource
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ profile-microservice ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 10 source files to /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/classes
-[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/src/main/java/com/csc301/profilemicroservice/Utils.java: /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/src/main/java/com/csc301/profilemicroservice/Utils.java uses or overrides a deprecated API.
-[INFO] /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/src/main/java/com/csc301/profilemicroservice/Utils.java: Recompile with -Xlint:deprecation for details.
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ profile-microservice ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
 [INFO] skip non existing resourceDirectory /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/src/test/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ profile-microservice ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/test-classes
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ profile-microservice ---
 [INFO] 
@@ -29,34 +25,34 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests
-01:59:25.870 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:25.875 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-01:59:25.879 [main] INFO org.springframework.core.KotlinDetector - Kotlin reflection implementation not found at runtime, related features won't be available.
-01:59:25.884 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-01:59:25.905 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-01:59:25.929 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests], using SpringBootContextLoader
-01:59:25.934 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: class path resource [com/csc301/profilemicroservice/ProfileMicroserviceApplicationTests-context.xml] does not exist
-01:59:25.935 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: class path resource [com/csc301/profilemicroservice/ProfileMicroserviceApplicationTestsContext.groovy] does not exist
-01:59:25.935 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-01:59:25.936 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: ProfileMicroserviceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-01:59:26.016 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.243 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/classes/com/csc301/profilemicroservice/ProfileMicroserviceApplication.class]
-01:59:26.245 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.csc301.profilemicroservice.ProfileMicroserviceApplication for test class com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests
-01:59:26.397 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: using defaults.
-01:59:26.398 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-01:59:26.416 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-01:59:26.417 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
-01:59:26.419 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@15ff3e9e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5fdcaa40, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6dc17b83, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5e0826e7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@32eff876, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@8dbdac1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6e20b53a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@71809907, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3ce1e309, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6aba2b86]
-01:59:26.428 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.428 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.430 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.430 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.432 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.433 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.437 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@5b239d7d testClass = ProfileMicroserviceApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6572421 testClass = ProfileMicroserviceApplicationTests, locations = '{}', classes = '{class com.csc301.profilemicroservice.ProfileMicroserviceApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@57e1b0c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@305fd85d, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e2d773b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6b9651f3], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
-01:59:26.438 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.438 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
-01:59:26.464 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+02:08:45.264 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.272 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+02:08:45.278 [main] INFO org.springframework.core.KotlinDetector - Kotlin reflection implementation not found at runtime, related features won't be available.
+02:08:45.283 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+02:08:45.308 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+02:08:45.323 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests], using SpringBootContextLoader
+02:08:45.329 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: class path resource [com/csc301/profilemicroservice/ProfileMicroserviceApplicationTests-context.xml] does not exist
+02:08:45.330 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: class path resource [com/csc301/profilemicroservice/ProfileMicroserviceApplicationTestsContext.groovy] does not exist
+02:08:45.330 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+02:08:45.332 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: ProfileMicroserviceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:08:45.384 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.562 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/classes/com/csc301/profilemicroservice/ProfileMicroserviceApplication.class]
+02:08:45.574 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.csc301.profilemicroservice.ProfileMicroserviceApplication for test class com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests
+02:08:45.710 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]: using defaults.
+02:08:45.712 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+02:08:45.737 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+02:08:45.738 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+02:08:45.738 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@15ff3e9e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5fdcaa40, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6dc17b83, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5e0826e7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@32eff876, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@8dbdac1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6e20b53a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@71809907, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3ce1e309, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6aba2b86]
+02:08:45.773 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.781 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.785 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.786 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.788 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.789 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.793 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@5b239d7d testClass = ProfileMicroserviceApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6572421 testClass = ProfileMicroserviceApplicationTests, locations = '{}', classes = '{class com.csc301.profilemicroservice.ProfileMicroserviceApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@57e1b0c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@305fd85d, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e2d773b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6b9651f3], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+02:08:45.794 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.795 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests]
+02:08:45.827 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -66,7 +62,7 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.7.RELEASE)
 
-2019-12-14 01:59:26.864  WARN 24569 --- [           main] ory$DuplicateJsonObjectContextCustomizer : 
+2019-12-14 02:08:46.178  WARN 25051 --- [           main] ory$DuplicateJsonObjectContextCustomizer : 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -75,250 +71,32 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-2019-12-14 01:59:26.887  INFO 24569 --- [           main] .c.p.ProfileMicroserviceApplicationTests : Starting ProfileMicroserviceApplicationTests on choyin.local with PID 24569 (started by choyiny in /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice)
-2019-12-14 01:59:26.889  INFO 24569 --- [           main] .c.p.ProfileMicroserviceApplicationTests : No active profile set, falling back to default profiles: default
-2019-12-14 01:59:27.479  WARN 24569 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
-2019-12-14 01:59:28.586  INFO 24569 --- [           main] Driver                                   : Direct driver instance 695248316 created for server address localhost:7687
-2019-12-14 01:59:28.869  INFO 24569 --- [           main] ConnectionPool                           : Closing connection pool towards localhost:7687
-2019-12-14 01:59:31.107 ERROR 24569 --- [           main] o.s.boot.SpringApplication               : Application run failed
-
-java.lang.IllegalStateException: Cannot load configuration class: com.csc301.profilemicroservice.ProfileMicroserviceApplication
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:413) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanFactory(ConfigurationClassPostProcessor.java:253) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:286) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:130) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:743) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:390) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) [spring-boot-test-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) [surefire-booter-2.22.2.jar:2.22.2]
-Caused by: java.lang.IllegalStateException: Unable to load cache item
-	at org.springframework.cglib.core.internal.LoadingCache.createEntry(LoadingCache.java:79) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.internal.LoadingCache.get(LoadingCache.java:34) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData.get(AbstractClassGenerator.java:134) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:319) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:569) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:416) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.createClass(ConfigurationClassEnhancer.java:137) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.enhance(ConfigurationClassEnhancer.java:109) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:402) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	... 38 common frames omitted
-Caused by: java.lang.ExceptionInInitializerError: null
-	at java.lang.Class.forName0(Native Method) ~[na:1.8.0_152]
-	at java.lang.Class.forName(Class.java:348) ~[na:1.8.0_152]
-	at org.springframework.cglib.core.ReflectUtils.defineClass(ReflectUtils.java:563) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator.generate(AbstractClassGenerator.java:363) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.generate(Enhancer.java:582) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:110) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:108) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.internal.LoadingCache$2.call(LoadingCache.java:54) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_152]
-	at org.springframework.cglib.core.internal.LoadingCache.createEntry(LoadingCache.java:61) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	... 46 common frames omitted
-Caused by: org.neo4j.driver.v1.exceptions.ServiceUnavailableException: Connection to the database terminated. This can happen due to network instabilities, or due to restarts of the database
-	at org.neo4j.driver.internal.util.Futures.blockingGet(Futures.java:122) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.internal.DriverFactory.verifyConnectivity(DriverFactory.java:346) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.internal.DriverFactory.newInstance(DriverFactory.java:93) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:136) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:119) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:94) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at com.csc301.profilemicroservice.ProfileMicroserviceApplication.<clinit>(ProfileMicroserviceApplication.java:12) ~[classes/:na]
-	... 56 common frames omitted
-	Suppressed: org.neo4j.driver.internal.util.ErrorUtil$InternalExceptionCause: null
-		at org.neo4j.driver.internal.util.ErrorUtil.newConnectionTerminatedError(ErrorUtil.java:50) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.async.HandshakeHandler.channelInactive(HandshakeHandler.java:81) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelInputClosed(ByteToMessageDecoder.java:377) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelInactive(ByteToMessageDecoder.java:342) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.ssl.SslHandler.channelInactive(SslHandler.java:1010) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.ChannelInboundHandlerAdapter.channelInactive(ChannelInboundHandlerAdapter.java:75) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.timeout.IdleStateHandler.channelInactive(IdleStateHandler.java:277) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline$HeadContext.channelInactive(DefaultChannelPipeline.java:1409) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline.fireChannelInactive(DefaultChannelPipeline.java:927) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannel$AbstractUnsafe$8.run(AbstractChannel.java:822) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:463) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_152]
-
-2019-12-14 01:59:31.121 ERROR 24569 --- [           main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@15ff3e9e] to prepare test instance [com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests@36ac8a63]
-
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:125) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58) [junit-4.12.jar:4.12]
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363) [junit-4.12.jar:4.12]
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) [spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159) [surefire-junit4-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126) [surefire-booter-2.22.2.jar:2.22.2]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418) [surefire-booter-2.22.2.jar:2.22.2]
-Caused by: java.lang.IllegalStateException: Cannot load configuration class: com.csc301.profilemicroservice.ProfileMicroserviceApplication
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:413) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanFactory(ConfigurationClassPostProcessor.java:253) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:286) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:130) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:743) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:390) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120) ~[spring-boot-test-2.1.7.RELEASE.jar:2.1.7.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117) ~[spring-test-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	... 27 common frames omitted
-Caused by: java.lang.IllegalStateException: Unable to load cache item
-	at org.springframework.cglib.core.internal.LoadingCache.createEntry(LoadingCache.java:79) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.internal.LoadingCache.get(LoadingCache.java:34) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData.get(AbstractClassGenerator.java:134) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:319) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:569) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:416) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.createClass(ConfigurationClassEnhancer.java:137) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassEnhancer.enhance(ConfigurationClassEnhancer.java:109) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:402) ~[spring-context-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	... 38 common frames omitted
-Caused by: java.lang.ExceptionInInitializerError: null
-	at java.lang.Class.forName0(Native Method) ~[na:1.8.0_152]
-	at java.lang.Class.forName(Class.java:348) ~[na:1.8.0_152]
-	at org.springframework.cglib.core.ReflectUtils.defineClass(ReflectUtils.java:563) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator.generate(AbstractClassGenerator.java:363) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.proxy.Enhancer.generate(Enhancer.java:582) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:110) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.AbstractClassGenerator$ClassLoaderData$3.apply(AbstractClassGenerator.java:108) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at org.springframework.cglib.core.internal.LoadingCache$2.call(LoadingCache.java:54) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_152]
-	at org.springframework.cglib.core.internal.LoadingCache.createEntry(LoadingCache.java:61) ~[spring-core-5.1.9.RELEASE.jar:5.1.9.RELEASE]
-	... 46 common frames omitted
-Caused by: org.neo4j.driver.v1.exceptions.ServiceUnavailableException: Connection to the database terminated. This can happen due to network instabilities, or due to restarts of the database
-	at org.neo4j.driver.internal.util.Futures.blockingGet(Futures.java:122) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.internal.DriverFactory.verifyConnectivity(DriverFactory.java:346) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.internal.DriverFactory.newInstance(DriverFactory.java:93) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:136) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:119) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at org.neo4j.driver.v1.GraphDatabase.driver(GraphDatabase.java:94) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-	at com.csc301.profilemicroservice.ProfileMicroserviceApplication.<clinit>(ProfileMicroserviceApplication.java:12) ~[classes/:na]
-	... 56 common frames omitted
-	Suppressed: org.neo4j.driver.internal.util.ErrorUtil$InternalExceptionCause: null
-		at org.neo4j.driver.internal.util.ErrorUtil.newConnectionTerminatedError(ErrorUtil.java:50) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.async.HandshakeHandler.channelInactive(HandshakeHandler.java:81) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelInputClosed(ByteToMessageDecoder.java:377) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelInactive(ByteToMessageDecoder.java:342) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.ssl.SslHandler.channelInactive(SslHandler.java:1010) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.ChannelInboundHandlerAdapter.channelInactive(ChannelInboundHandlerAdapter.java:75) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.handler.timeout.IdleStateHandler.channelInactive(IdleStateHandler.java:277) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:224) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline$HeadContext.channelInactive(DefaultChannelPipeline.java:1409) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:245) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:231) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline.fireChannelInactive(DefaultChannelPipeline.java:927) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannel$AbstractUnsafe$8.run(AbstractChannel.java:822) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:463) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[neo4j-java-driver-1.7.2.jar:1.7.2-7165cef0d4b602da30b65613977744ad661c2e67]
-		at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_152]
-
-[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.575 s <<< FAILURE! - in com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests
-[ERROR] contextLoads(com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests)  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: java.lang.IllegalStateException: Cannot load configuration class: com.csc301.profilemicroservice.ProfileMicroserviceApplication
-Caused by: java.lang.IllegalStateException: Unable to load cache item
-Caused by: java.lang.ExceptionInInitializerError
-Caused by: org.neo4j.driver.v1.exceptions.ServiceUnavailableException: Connection to the database terminated. This can happen due to network instabilities, or due to restarts of the database
-
+2019-12-14 02:08:46.207  INFO 25051 --- [           main] .c.p.ProfileMicroserviceApplicationTests : Starting ProfileMicroserviceApplicationTests on choyin.local with PID 25051 (started by choyiny in /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice)
+2019-12-14 02:08:46.207  INFO 25051 --- [           main] .c.p.ProfileMicroserviceApplicationTests : No active profile set, falling back to default profiles: default
+2019-12-14 02:08:46.676  WARN 25051 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-12-14 02:08:47.529  INFO 25051 --- [           main] Driver                                   : Direct driver instance 248483913 created for server address localhost:7687
+2019-12-14 02:08:49.174  INFO 25051 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-14 02:08:49.457  INFO 25051 --- [           main] .c.p.ProfileMicroserviceApplicationTests : Started ProfileMicroserviceApplicationTests in 3.62 seconds (JVM running for 4.718)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.524 s - in com.csc301.profilemicroservice.ProfileMicroserviceApplicationTests
+2019-12-14 02:08:49.643  INFO 25051 --- [       Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 [INFO] 
 [INFO] Results:
 [INFO] 
-[ERROR] Errors: 
-[ERROR]   ProfileMicroserviceApplicationTests.contextLoads » IllegalState Failed to load...
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
-[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
 [INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ profile-microservice ---
+[INFO] Building jar: /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/profile-microservice-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.1.7.RELEASE:repackage (repackage) @ profile-microservice ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ profile-microservice ---
+[INFO] Installing /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/profile-microservice-0.0.1-SNAPSHOT.jar to /Users/choyiny/.m2/repository/com/csc301/profile-microservice/0.0.1-SNAPSHOT/profile-microservice-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/pom.xml to /Users/choyiny/.m2/repository/com/csc301/profile-microservice/0.0.1-SNAPSHOT/profile-microservice-0.0.1-SNAPSHOT.pom
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  11.204 s
-[INFO] Finished at: 2019-12-14T01:59:31-05:00
+[INFO] Total time:  8.631 s
+[INFO] Finished at: 2019-12-14T02:08:50-05:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test (default-test) on project profile-microservice: There are test failures.
-[ERROR] 
-[ERROR] Please refer to /Users/choyiny/UTSC/CSCC01/repos/a3-davidhaoa3/starter_code/profile-microservice/target/surefire-reports for the individual test results.
-[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
-[ERROR] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
