@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "7a87b9bd-1881-4e9f-bbf0-1abf2148d863",
+		"name": "SpodifyLikeMusicApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Song-MicroService",
+			"item": [
+				{
+					"name": "add Song",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{__X-API-KEY__}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/addSong?songName=my first song&songArtistFullName=Hao Liang&songAlbum=my first album",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"addSong"
+							],
+							"query": [
+								{
+									"key": "songName",
+									"value": "my first song"
+								},
+								{
+									"key": "songArtistFullName",
+									"value": "Hao Liang"
+								},
+								{
+									"key": "songAlbum",
+									"value": "my first album"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Song by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{__X-API-KEY__}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/deleteSongById/5de42e8a8de34f1e973a0c4a?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"deleteSongById",
+								"5de42e8a8de34f1e973a0c4a"
+							],
+							"query": [
+								{
+									"key": "songName",
+									"value": "my first song",
+									"disabled": true
+								},
+								{
+									"key": "songArtistFullName",
+									"value": "Hao Liang",
+									"disabled": true
+								},
+								{
+									"key": "songAlbum",
+									"value": "my first album",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Song by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/getSongById/5de432578de34f1ff61ea2ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getSongById",
+								"5de432578de34f1ff61ea2ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get SongTitle by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/getSongTitleById/5de432578de34f1ff61ea2ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"getSongTitleById",
+								"5de432578de34f1ff61ea2ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSongFavouritesCount",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{__X-API-KEY__}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/updateSongFavouritesCount/5de5aed88de34f49a1738a22?shouldDecrement=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"updateSongFavouritesCount",
+								"5de5aed88de34f49a1738a22"
+							],
+							"query": [
+								{
+									"key": "shouldDecrement",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Profile-MicroService",
+			"item": [
+				{
+					"name": "post Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/profile?userName=99&fullName=alskdjlksdjflkasjd&password=1234567",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"profile"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "99"
+								},
+								{
+									"key": "fullName",
+									"value": "alskdjlksdjflkasjd"
+								},
+								{
+									"key": "password",
+									"value": "1234567"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "follow Friend",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/followFriend/2/1?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"followFriend",
+								"2",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "fullName",
+									"value": "alskdjlksdjflkasjd",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unfollow Friend",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/unfollowFriend/1/2?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"unfollowFriend",
+								"1",
+								"2"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "fullName",
+									"value": "alskdjlksdjflkasjd",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like Song",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/likeSong/99/5de5aed88de34f49a1738a22?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"likeSong",
+								"99",
+								"5de5aed88de34f49a1738a22"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "fullName",
+									"value": "alskdjlksdjflkasjd",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unlike Song",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/unlikeSong/99/5de5aed88de34f49a1738a22?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"unlikeSong",
+								"99",
+								"5de5aed88de34f49a1738a22"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "fullName",
+									"value": "alskdjlksdjflkasjd",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get SongTitle by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/getAllFriendFavouriteSongTitles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"getAllFriendFavouriteSongTitles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all songs from the DB",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/deleteAllSongsFromDb/5de722bb8de34f77536450ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"deleteAllSongsFromDb",
+								"5de722bb8de34f77536450ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFriendsFavorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/getAllFriendFavouriteSongTitles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"getAllFriendFavouriteSongTitles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
