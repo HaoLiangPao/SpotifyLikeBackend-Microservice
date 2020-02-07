@@ -1,7 +1,7 @@
 # SpotifyLikeBackend-Microservice
 
 #### Backend for Six Degrees of Kevin Bacon
-  Keywords: `Java backend`, `NoSQL (Neo4j)`, `REST API`, `Maven`
+  Keywords: `Spring Framework`, `Neo4j`, `MongoDB`, `Microservice`, `GitFlow`
   
 ### 1. Descriptions<br/>
   This is an Java implementation of the backend for a Music Application similar to spodify. Assumptions were made that songs and users are stored in different database. Java Spring Framework was used and thwo databases were communicating through REST-api calls.
