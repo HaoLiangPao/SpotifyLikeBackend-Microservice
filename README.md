@@ -5,7 +5,6 @@
   
 ### 1. Descriptions<br/>
   This is an Java implementation of the backend for a Music Application similar to spodify. Assumptions were made that songs and users are stored in different database. Java Spring Framework was used and thwo databases were communicating through REST-api calls.
-between Kevin Bacon and a given actor (via shared movies). 
 * The backend is running on port 8080.
 * ProfileMicroservice:
   * database connect to: 7687;
